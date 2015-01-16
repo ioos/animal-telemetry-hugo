@@ -1,0 +1,16 @@
+baseurl = "http://ioos.github.io/animal-telemetry"
+CanonifyUrls = true
+contentdir = "content"
+layoutdir = "layouts"
+publishdir = "public"
+languageCode = "en-us"
+[params]
+  Title = "Strategic Plan & Recommendations for ATN"
+  Tagline = "Meeting Nation's Needs for Biological and Environmental Monitoring"
+[params.Github]
+  Head = "master"
+  Url = "https://github.com/ioos/animal-telemetry"
+	
+	
+	
+ 
