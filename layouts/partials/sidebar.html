@@ -27,12 +27,18 @@
       {{ end }}
     {{ end }}
 </p>
+<p style="text-align:right">
+      {{ range .Site.Menus.extramedia }}
+        <a class="sidebar-nav-item-list" href="{{ .Url }}"> {{ .Name }}</a>
+      {{end}}
+</p>
+
     <a class="sidebar-nav-item" href="{{ .Site.Params.Github.Url }}/archive/{{ .Site.Params.Github.Head }}.zip">Download</a>
     <a class="sidebar-nav-item" href="{{ .Site.Params.Github.Url }}">GitHub repository</a>
     <span class="sidebar-nav-item">Currently on {{ .Site.Params.Github.Head }}</span>
   </nav>
 
   <div class="sidebar-item">
-    <p>&copy; {{ .Site.LastChange.Year }} U.S. IOOS. Some rights reserved</p>
+    <p>&copy; {{ .Site.LastChange.Year }} U.S. IOOS. Rights reserved</p>
   </div>
 </div>
