@@ -1,0 +1,2618 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile"> 
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>
+    
+      A Metadata Convention for Passive Acoustic Recordings &middot; Strategic Plan &amp; Recommendations for ATN
+    
+  </title>
+
+  
+  <link rel="stylesheet" href="http://ioos.github.io/animal-telemetry/css/poole.css">
+  <link rel="stylesheet" href="http://ioos.github.io/animal-telemetry/css/syntax.css">
+  <link rel="stylesheet" href="http://ioos.github.io/animal-telemetry/css/lanyon.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://ioos.github.io/animal-telemetry/assets/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="http://ioos.github.io/animal-telemetry/assets/favicon.ico">
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://ioos.github.io/animal-telemetry/atom.xml">
+</head>
+
+
+  <body>
+
+    
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p align="center">&middot; <a href="http://ioos.github.io/" target="_blank">IOOS GitHub Pages</a> &middot; <br>
+	a collection of IOOS documentation and software</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item " href="http://ioos.github.io/animal-telemetry/">Home</a>
+
+
+  <div class="sidebar-item">
+    <p>Documents</p>
+  </div>
+
+<p style="text-align:right"> 
+    
+    
+      
+        <a class="sidebar-nav-item-list " href="http://ioos.github.io/animal-telemetry/about/">ABOUT: National Animal Telemetry Network</a>
+      
+    
+      
+        <a class="sidebar-nav-item-list " href="http://ioos.github.io/animal-telemetry/animal-telemetry-plan/">Strategic Plan And Recommendations for a National ATN through U.S. IOOS</a>
+      
+    
+      
+        <a class="sidebar-nav-item-list  active " href="http://ioos.github.io/animal-telemetry/passive-acoustic/">A Metadata Convention for Passive Acoustic Recordings</a>
+      
+    
+</p>
+<p style="text-align:right">
+      
+</p>
+
+    <a class="sidebar-nav-item" href="https://github.com/ioos/animal-telemetry/archive/master.zip">Download</a>
+    <a class="sidebar-nav-item" href="https://github.com/ioos/animal-telemetry">GitHub repository</a>
+    <span class="sidebar-nav-item">Currently on master</span>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>&copy; 2014 U.S. IOOS. Rights reserved</p>
+  </div>
+</div>
+
+
+    
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h2 class="masthead-title">
+		  <a href="http://ioos.github.io/animal-telemetry/" title="Home"> Strategic Plan &amp; Recommendations for ATN &middot; 
+		  <small>Meeting Nation&#39;s Needs for Biological and Environmental Monitoring</small>
+		  <img src="http://ioos.github.io/animal-telemetry/images/ioos_blue2.png" alt="Smiley face" align="right" /></a>
+		  </h2>
+        </div>
+      </div>
+
+      <div class="container content">
+
+
+<div class="post">
+  <h1 class="post-title">A Metadata Convention for Passive Acoustic Recordings</h1>
+    <div id="toc" class="well col-md-4 col-sm-6">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#toc_0">Background</a></li>
+<li><a href="#toc_1">Summary of Metadata Categories</a>
+<ul>
+<li><a href="#toc_2">Mission / project metadata</a></li>
+<li><a href="#toc_3">Platform metadata</a></li>
+<li><a href="#toc_4">Recording equipment metadata</a></li>
+</ul></li>
+<li><a href="#toc_5">Definition of Attributes for Passive Acoustic Recordings Metadata</a>
+<ul>
+<li><a href="#toc_6">Category I:  Mission and Project</a></li>
+<li><a href="#toc_7">Category II:  Platform</a></li>
+<li><a href="#toc_8">Category III:  Recording Equipment (sensor, pre-amplifier, A/D converter, additional signal conditioning)</a></li>
+</ul></li>
+<li><a href="#toc_9">ISO 19115  XML Template for NOAA Passive Acoustic Recordings</a></li>
+<li><a href="#toc_10">REFERENCE INFORMATION</a>
+<ul>
+<li><a href="#toc_11">Contribution</a></li>
+<li><a href="#toc_12">Validation</a></li>
+<li><a href="#toc_13">Revisions</a></li>
+<li><a href="#toc_14">Acknowledgments</a></li>
+<li><a href="#toc_15">Endorsement Disclaimer</a></li>
+<li><a href="#toc_16">Citation</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+  
+
+<p><em>The objective of this document is to present metadata that supports the mission of the National Oceanic and Atmospheric Administration (NOAA) for acquisition, archiving, and dissemination of ocean passive acoustic data.</em></p>
+
+<h1 id="toc_0">Background</h1>
+
+<p>Metadata is data that describes data.  A metadata convention is a systemic set of metadata attributes that have been developed to describe a particular genre or type of data.  This document attempts to create a host metadata list that is necessary to describe passive acoustic datasets from various platforms and sensors from NOAA’s different line offices.  The metadata list will further be used to develop a “machine-readable” metadata template to be tested among passive acoustic data holders and the community.  Hopefully it will eventually be adopted as the NOAA metadata standard for passive acoustic recordings.  The terms “metadata convention” and “metadata standard” are often used interchangeable.  This document details a “convention” which may be followed, as against a “standard” that is more stringent and must be adhered to.  The goal of the eventual development of such a standard will facilitate discovery and exchange of passive acoustic recording data while ensuring its archivability and longevity.</p>
+
+<h1 id="toc_1">Summary of Metadata Categories</h1>
+
+<h2 id="toc_2">Mission / project metadata</h2>
+
+<p>This is the metadata that gives a high level description of the overarching initiative (e.g., mission, project, ocean observing system) under which passive acoustic data are collected.</p>
+
+<h2 id="toc_3">Platform metadata</h2>
+
+<p>This metadata set includes vessel, glider, drifting buoy, and fixed platform (buoy-moored sensor, suspended sensor, and bottom-mounted sensor, etc.).  This metadata describes the platform used to collect passive acoustic data.</p>
+
+<h2 id="toc_4">Recording equipment metadata</h2>
+
+<p>This metadata include instruments involved in passive acoustic data collection.  The category includes instrumentation, which describes a collection of the instrument package, and each separate component of the instrument package: hydrophone / sensor, pre-amplifier, analogue/digital converter, and recorder.</p>
+
+<h1 id="toc_5">Definition of Attributes for Passive Acoustic Recordings Metadata</h1>
+
+<p><br></p>
+
+<h2 id="toc_6">Category I:  Mission and Project</h2>
+
+<table>
+<thead>
+<tr>
+<th>Metadata name</th>
+<th>Definition</th>
+<th align="center">Data type [1]</th>
+<th align="center">Unit</th>
+<th align="left">Authority</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>project_ID</td>
+<td>ID number of mission or project, if exists</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>project_name</td>
+<td>Name of mission or project</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>project_abstract</td>
+<td>Free text description of the mission or project, its purpose, scientific objectives and area of operation.  Other instruments and experiments within the mission or project which may or may not relate directly to the passive acoustic data can be included</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>project_purpose</td>
+<td>Free text description of the purpose or objective of the project or mission</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_acknowledgement</td>
+<td>Any users (including re-packagers) of this data are required to clearly acknowledge the source of the material in this format.  E.g., acknowledge contribution of the datasets</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>principal_investigator</td>
+<td>Name of the principal investigator in charge of the mission or project</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>organizationName</td>
+<td>Name and address of the organization, facility, or agency where the original data were produced</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left">ISO 19115-2:2009(E)</td>
+</tr>
+
+<tr>
+<td>principal_investigator_position</td>
+<td>Position and title of the principal investigator</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>principal_investigator_phone</td>
+<td>Principal investigator’s phone number</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>principal_investigator_fax</td>
+<td>Principal investigator’s facsimile number</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>principal_investigator_address</td>
+<td>Principal investigator’s address line</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>principal_investigator_city</td>
+<td>Principal investigator’s address city</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>principal_investigator_state</td>
+<td>Principal investigator’s state/province or region</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>principal_investigator_zip</td>
+<td>Principal investigator’s ZIP or postal code</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>principal_investigator_country</td>
+<td>Principal investigator’s country</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>principal_investigator_email</td>
+<td>Principal investigator’s e-mail address</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>contact_instruction</td>
+<td>Description on how to contact the PI for data</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_update_frequency</td>
+<td>How often the acoustic data get updated</td>
+<td align="center">N</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>last_data_update</td>
+<td>The date when acoustic data were updated</td>
+<td align="center">N</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_update_note</td>
+<td>Notes for data updates</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_center_contact_name</td>
+<td>Name of the contact person at the data center</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_center</td>
+<td>Data center in charge of the data management or party who distributed the resource</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_center_contact_position</td>
+<td>Position and title of the contact person at the data center</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_center_phone</td>
+<td>Data center phone number</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_center_fax</td>
+<td>Data center facsimile number</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_center_address</td>
+<td>Address line of the data center</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_center_city</td>
+<td>City where the data center is located</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_center_state</td>
+<td>State or province where the data center is located</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_center_zip</td>
+<td>ZIP code or postal code of the data center</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_center_country</td>
+<td>Country where the data center is located</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_center_e-mail</td>
+<td>e-mail address of the data center</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_center_website</td>
+<td>Web site of the data center</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_center_hours</td>
+<td>Hours of service of the data center</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>contact_instruction_data_center</td>
+<td>Description on how to contact the data center</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_file_name</td>
+<td>File name of the acoustic data</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_file_version</td>
+<td>File version of the acoustic data</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_type</td>
+<td>Type of acoustic data (.wav, mp3, etc.)</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>compression_technique</td>
+<td>Acoustic data compression technique, if any</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>ambient_noise</td>
+<td>Place keyword for ambient noise</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>animal_sound</td>
+<td>Place keyword for animal sound</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>anthropogenic_noise</td>
+<td>Place keyword for anthropogenic noise</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>Pacific_Ocean</td>
+<td>Place keyword for Pacific Ocean</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left">GCMD, keywords vs 8.0</td>
+</tr>
+
+<tr>
+<td>Atlantic_Ocean</td>
+<td>Place keyword for Atlantic Ocean</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left">GCMD, keywords vs 8.0</td>
+</tr>
+
+<tr>
+<td>Arctic_Ocean</td>
+<td>Place keyword for Arctic Ocean</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left">GCMD, keywords vs 8.0</td>
+</tr>
+
+<tr>
+<td>Indian_Ocean</td>
+<td>Place keyword for Indian Ocean</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left">GCMD, keywords vs 8.0</td>
+</tr>
+
+<tr>
+<td>place</td>
+<td>Keywords for places</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>vessel</td>
+<td>Platform keyword for vessel</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>glider</td>
+<td>Platform keyword for glider</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left">IOOS Platform Vocabulary</td>
+</tr>
+
+<tr>
+<td>drifting_buoy</td>
+<td>Platform keyword for drifting buoy</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left">IOOS Platform Vocabulary</td>
+</tr>
+
+<tr>
+<td>moored_buoy</td>
+<td>Platform keyword for moored buoy</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left">IOOS Platform Vocabulary</td>
+</tr>
+
+<tr>
+<td>bottom_mounted</td>
+<td>Platform keyword for bottom-mounted platform</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>platform</td>
+<td>Keywords for platforms</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left">IOOS Platform Vocabulary</td>
+</tr>
+
+<tr>
+<td>hydrophone_pressure_sensor</td>
+<td>Instrument keyword for pressure sensor hydrophone</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>hydrophone_vector_sensor</td>
+<td>Instrument keyword for vector sensor hydrophone</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>preamplifier</td>
+<td>Instrument keyword for pre-amplifier</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>AD_converter</td>
+<td>Instrument keyword for A/D converter</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>recorder_analogue</td>
+<td>Instrument keyword for analogue recorder</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>recorder_digital</td>
+<td>Instrument keyword for digital recorder</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>other_signal_conditioning</td>
+<td>Instrument keyword for other signal conditioning devices</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>instrument</td>
+<td>Keywords for instrument</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>NEFSC</td>
+<td>dataCenter keyword for NEFSC</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>SEFSC</td>
+<td>dataCenter keyword for SEFSC</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>NWFSC</td>
+<td>dataCenter keyword for NWFSC</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>SWFSC</td>
+<td>dataCenter keyword for SWFSC</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>AFSC</td>
+<td>dataCenter keyword for AFSC</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>PIFSC</td>
+<td>dataCenter keyword for PIFSC</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>dataCenter</td>
+<td>Keywords for data centers</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>data_restriction</td>
+<td>Restriction of data distribution</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>language</td>
+<td>Language</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>project_area_description</td>
+<td>Description of the project area</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>project_geospatial_longitude_minimum</td>
+<td>Westernmost longitude of bounding box.  A value between -180 and 180 decimal degrees East.  Note it is possible for the numeric value of the “geospatial longitude maximum” to be less than the numeric value of the “geospatial longitude minimum.”  In that instance the bounding box will have crossed the 180 degree longitude boundary between West and East.</td>
+<td align="center">N</td>
+<td align="center">degrees_east</td>
+<td align="left">CF</td>
+</tr>
+
+<tr>
+<td>project_geospatial_longitude_maximum</td>
+<td>Easternmost longitude of bounding box.  A value between -180 and 180 decimal degrees East.  Note it is possible for the numeric value of the “geospatial longitude maximum” to be less than the numeric value of the “geospatial longitude minimum.”  In that instance the bounding box will have crossed the 180 degree longitude boundary between West and East.</td>
+<td align="center">N</td>
+<td align="center">degrees_east</td>
+<td align="left">CF</td>
+</tr>
+
+<tr>
+<td>project_geospatial_latitude_minimum</td>
+<td>Southernmost latitude of bounding box.  A value between -90 and 90 decimal degrees North</td>
+<td align="center">N</td>
+<td align="center">degrees_north</td>
+<td align="left">CF</td>
+</tr>
+
+<tr>
+<td>project_geospatial_latitude_maximum</td>
+<td>Northernmost latitude of bounding box.  A value between -90 and 90 decimal degrees North.</td>
+<td align="center">N</td>
+<td align="center">degrees_north</td>
+<td align="left">CF</td>
+</tr>
+
+<tr>
+<td>project_start_date</td>
+<td>Start data of mission or project in ISO 8601 format including local time zone.  For example, a local time of 18:00 on the 24th of October 2008 would be represented as 2008-10-24T08:00:00Z+10 (local).</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>project_end_date</td>
+<td>As per mission_start_date</td>
+<td align="center">S</td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>minimum_sensor_depth</td>
+<td>Minimum sensor depth in m</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>maximum_sensor_depth</td>
+<td>Maximum sensor depth in m</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>supplemental_info</td>
+<td>Additional info</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>[1] “S” denotes the entry is a text value, while “N” denotes the entry is a numeric value.                                  
+</code></pre>
+
+<h2 id="toc_7">Category II:  Platform</h2>
+
+<table>
+<thead>
+<tr>
+<th>Metadata name</th>
+<th>Definition</th>
+<th>Data type</th>
+<th>Units</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>vessel_id</td>
+<td>ID number of the vessel, if it exists</td>
+<td>S</td>
+<td></td>
+</tr>
+
+<tr>
+<td>acoustic_sampling_start_date</td>
+<td>Start data of acoustic data collection in ISO 8601 format including local time zone.  For example, a local time of 18:00 on the 24th of October 2008 would be represented as 2008-10-24T08:00:00Z+10 (local).</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>platform_detail</td>
+<td>Free field provide detailed description of the platform, include tow speed (for towed hydrophone or hydrophone array), number of sensors, array directivity in housing, array geometry, array beamwidth, platform noise signature, platform synchronization, and platform manufacture date, etc.</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>glider_name</td>
+<td>Name of the glider that was used to collect passive acoustic data.</td>
+<td>S</td>
+<td></td>
+</tr>
+
+<tr>
+<td>glider_id</td>
+<td>ID number of the glider, if it exists</td>
+<td>S</td>
+<td></td>
+</tr>
+
+<tr>
+<td>acoustic_sampling_start_date</td>
+<td>Start data of acoustic data collection in ISO 8601 format including local time zone.  For example, a local time of 18:00 on the 24th of October 2008 would be represented as 2008-10-24T08:00:00Z+10 (local).</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>platform_detail</td>
+<td>Free field provide detailed description of the platform, include number of sensors, array directivity in housing, array geometry, array beamwidth, platform noise signature, platform synchronization, and platform manufacture date, etc.</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>drifting_buoy_name</td>
+<td>Name of the drifting buoy that was used to collect passive acoustic data.</td>
+<td>S</td>
+<td></td>
+</tr>
+
+<tr>
+<td>drifting_buoy_id</td>
+<td>ID number of the drifting buoy, if it exists</td>
+<td>S</td>
+<td></td>
+</tr>
+
+<tr>
+<td>acoustic_sampling_start_date</td>
+<td>Start data of acoustic data collection in ISO 8601 format including local time zone.  For example, a local time of 18:00 on the 24th of October 2008 would be represented as 2008-10-24T08:00:00Z+10 (local).</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>platform_detail</td>
+<td>Free field provide detailed description of the platform, include tow speed (for towed hydrophone or hydrophone array), number of sensors, array directivity in housing, array geometry, array beamwidth, platform noise signature, platform synchronization, and platform manufacture date, etc.</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>moored_buoy_name</td>
+<td>Name of the moored buoy that was used to collect passive acoustic data.</td>
+<td>S</td>
+<td></td>
+</tr>
+
+<tr>
+<td>moored_buoy_id</td>
+<td>ID number of the moored buoy, if it exists</td>
+<td>S</td>
+<td></td>
+</tr>
+
+<tr>
+<td>acoustic_sampling_start_date</td>
+<td>Start data of acoustic data collection in ISO 8601 format including local time zone.  For example, a local time of 18:00 on the 24th of October 2008 would be represented as 2008-10-24T08:00:00Z+10 (local).</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>platform_detail</td>
+<td>Free field provide detailed description of the platform, include tow speed (for towed hydrophone or hydrophone array), number of sensors, array directivity in housing, array geometry, array beamwidth, platform noise signature, platform synchronization, and platform manufacture date, etc.</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>suspended_platform_name</td>
+<td>Name of the suspended platform that was used to collect passive acoustic data.</td>
+<td>S</td>
+<td></td>
+</tr>
+
+<tr>
+<td>suspended_platform_id</td>
+<td>ID number of the suspended platform, if it exists</td>
+<td>S</td>
+<td></td>
+</tr>
+
+<tr>
+<td>acoustic_sampling_start_date</td>
+<td>Start data of acoustic data collection in ISO 8601 format including local time zone.  For example, a local time of 18:00 on the 24th of October 2008 would be represented as 2008-10-24T08:00:00Z+10 (local).</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>platform_detail</td>
+<td>Free field provide detailed description of the platform, include tow speed (for towed hydrophone or hydrophone array), number of sensors, array directivity in housing, array geometry, array beamwidth, platform noise signature, platform synchronization, and platform manufacture date, etc.</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>bottom_mounted_platform_name</td>
+<td>Name of the bottom-mounted platform that was used to collect passive acoustic data.</td>
+<td>S</td>
+<td></td>
+</tr>
+
+<tr>
+<td>bottom_mounted_platform_id</td>
+<td>ID number of the bottom-mounted platform, if it exists</td>
+<td>S</td>
+<td></td>
+</tr>
+
+<tr>
+<td>acoustic_sampling_start_date</td>
+<td>Start data of acoustic data collection in ISO 8601 format including local time zone.  For example, a local time of 18:00 on the 24th of October 2008 would be represented as 2008-10-24T08:00:00Z+10 (local).</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>platform_detail</td>
+<td>Free field provide detailed description of the platform, include tow speed (for towed hydrophone or hydrophone array), number of sensors, array directivity in housing, array geometry, array beamwidth, platform noise signature, platform synchronization, and platform manufacture date, etc.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="toc_8">Category III:  Recording Equipment (sensor, pre-amplifier, A/D converter, additional signal conditioning)</h2>
+
+<table>
+<thead>
+<tr>
+<th>Metadata name</th>
+<th>Definition</th>
+<th align="center">Data type</th>
+<th>Units</th>
+<th>Authority</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>hydrophone_type</td>
+<td>pressure sensor or vector sensor</td>
+<td align="center">S</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>hydrophone_id</td>
+<td>ID number of the hydrophone if it exists</td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>hydrophone_maker_model</td>
+<td>Maker or manufacture of the hydrophone that was used to collect passive acoustic data</td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>hydrophone_sensitivity</td>
+<td>Sensitivity of hydrophone and calibration method</td>
+<td align="center">N</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>calibration_date</td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>other_info</td>
+<td>List noise floor, directivity, and resonance frequency of hydrophone</td>
+<td align="center">N</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>preamplifier_id</td>
+<td>ID number of the pre-amplifier if it exists</td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>preamplifier_maker_model</td>
+<td>Maker or manufacture of the preamplifier that was used to collect passive acoustic data</td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>preamplifier_gain</td>
+<td>For pre-amplifier, A/D converter, and signal conditioning only</td>
+<td align="center">N</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>other_info</td>
+<td>Other info related to the pre-amplifier, such as noise floor, low- and high-pass filter specification, etc., if available.</td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>AD_converter_id</td>
+<td>ID number of the AD converter if it exists</td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>AD_converter_maker_model</td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>sample_rate</td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>other_info</td>
+<td>Additional info related to the AD converter, such as gain, noise floor, and bit rate, etc.</td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>recorder_type</td>
+<td>analogue vs. digital recorder</td>
+<td align="center">S</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>recorder_id</td>
+<td>ID number of the recorder if it exists</td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>recorder_maker_model</td>
+<td>Maker or manufacture of the recorder that was used to collect passive acoustic data</td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>recorder_gain</td>
+<td>Signal gain of the recorder</td>
+<td align="center">N</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>other_info</td>
+<td>Additional info related to the recorder, such as noise floor, etc.</td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>additional_signal_con_type</td>
+<td>Types of additional signal conditioning device, if available</td>
+<td align="center">S</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>device_id</td>
+<td>ID number of the instrument if it exists</td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>device_maker_model</td>
+<td>Maker or manufacture of the device that was used to collect passive acoustic data</td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>device_function</td>
+<td>Functionality of the device</td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>other_info</td>
+<td>Additional info related to the device, such as signal gain, noise floor, etc.</td>
+<td align="center">N</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="toc_9">ISO 19115  XML Template for NOAA Passive Acoustic Recordings</h1>
+
+<pre><code>
+&lt;!-- &lt;gmd:metadataStandardName&gt;
+     &lt;gco:CharacterString&gt;METADATA CONVENTION FOR IOOS PASSIVE ACOUSTIC RECORDINGS&lt;/gco:CharacterString&gt;
+     version 1.0 2013/08/13 Shane Guan (NMFS, Silver Spring, MD), Hassan Moustahfid (US IOOS, Silver Spring, MD) and Anna Milan (NOAA NGDC, Boulder, CO), Jacqueline Mize (NOAA NCDDC, Stennis, MS)--&gt;
+
+&lt;?xml-stylesheet type=&quot;text/css&quot; href=&quot;http://www.ngdc.noaa.gov/metadata/published/views/ISO.css&quot;?&gt;
+&lt;gmi:MI_Metadata xmlns:gmi=&quot;http://www.isotc211.org/2005/gmi&quot; xmlns:gmd=&quot;http://www.isotc211.org/2005/gmd&quot; xmlns:gco=&quot;http://www.isotc211.org/2005/gco&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; xmlns:gml=&quot;http://www.opengis.net/gml/3.2&quot; xmlns:srv=&quot;http://www.isotc211.org/2005/srv&quot; xmlns:gmx=&quot;http://www.isotc211.org/2005/gmx&quot; xmlns:gss=&quot;http://www.isotc211.org/2005/gss&quot; xmlns:gsr=&quot;http://www.isotc211.org/2005/gsr&quot; xmlns:gts=&quot;http://www.isotc211.org/2005/gts&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.isotc211.org/2005/gmi http://www.ngdc.noaa.gov/metadata/published/xsd/schema.xsd&quot;&gt;
+  &lt;gmd:fileIdentifier&gt;
+    &lt;gco:CharacterString&gt;project_ID&lt;/gco:CharacterString&gt;
+  &lt;/gmd:fileIdentifier&gt;
+  &lt;gmd:language&gt;
+    &lt;gco:CharacterString&gt;eng; USA&lt;/gco:CharacterString&gt;
+  &lt;/gmd:language&gt;
+  &lt;gmd:contact&gt;
+    &lt;gmd:CI_ResponsibleParty&gt;
+      &lt;gmd:individualName&gt;
+        &lt;gco:CharacterString&gt;template&lt;/gco:CharacterString&gt;
+      &lt;/gmd:individualName&gt;
+      &lt;gmd:organisationName&gt;
+        &lt;gco:CharacterString&gt;template&lt;/gco:CharacterString&gt;
+      &lt;/gmd:organisationName&gt;
+      &lt;gmd:positionName&gt;
+        &lt;gco:CharacterString&gt;template&lt;/gco:CharacterString&gt;
+      &lt;/gmd:positionName&gt;
+      &lt;gmd:contactInfo&gt;
+        &lt;gmd:CI_Contact&gt;
+          &lt;gmd:phone&gt;
+            &lt;gmd:CI_Telephone&gt;
+              &lt;gmd:voice&gt;
+                &lt;gco:CharacterString&gt;template&lt;/gco:CharacterString&gt;
+              &lt;/gmd:voice&gt;
+              &lt;gmd:facsimile&gt;
+                &lt;gco:CharacterString&gt;template&lt;/gco:CharacterString&gt;
+              &lt;/gmd:facsimile&gt;
+            &lt;/gmd:CI_Telephone&gt;
+          &lt;/gmd:phone&gt;
+          &lt;gmd:address&gt;
+            &lt;gmd:CI_Address&gt;
+              &lt;gmd:deliveryPoint&gt;
+                &lt;gco:CharacterString&gt;template&lt;/gco:CharacterString&gt;
+              &lt;/gmd:deliveryPoint&gt;
+              &lt;gmd:city&gt;
+                &lt;gco:CharacterString&gt;template&lt;/gco:CharacterString&gt;
+              &lt;/gmd:city&gt;
+              &lt;gmd:administrativeArea&gt;
+                &lt;gco:CharacterString&gt;template&lt;/gco:CharacterString&gt;
+              &lt;/gmd:administrativeArea&gt;
+              &lt;gmd:postalCode&gt;
+                &lt;gco:CharacterString&gt;template&lt;/gco:CharacterString&gt;
+              &lt;/gmd:postalCode&gt;
+              &lt;gmd:country&gt;
+                &lt;gco:CharacterString&gt;template&lt;/gco:CharacterString&gt;
+              &lt;/gmd:country&gt;
+              &lt;gmd:electronicMailAddress&gt;
+                &lt;gco:CharacterString&gt;template&lt;/gco:CharacterString&gt;
+              &lt;/gmd:electronicMailAddress&gt;
+            &lt;/gmd:CI_Address&gt;
+          &lt;/gmd:address&gt;
+          &lt;gmd:hoursOfService&gt;
+            &lt;gco:CharacterString&gt;template&lt;/gco:CharacterString&gt;
+          &lt;/gmd:hoursOfService&gt;
+          &lt;gmd:contactInstructions&gt;
+            &lt;gco:CharacterString&gt;template&lt;/gco:CharacterString&gt;
+          &lt;/gmd:contactInstructions&gt;
+        &lt;/gmd:CI_Contact&gt;
+      &lt;/gmd:contactInfo&gt;
+      &lt;gmd:role&gt;
+        &lt;gmd:CI_RoleCode codeList=&quot;http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode&quot; codeListValue=&quot;code&quot;&gt;code&lt;/gmd:CI_RoleCode&gt;
+      &lt;/gmd:role&gt;
+    &lt;/gmd:CI_ResponsibleParty&gt;
+  &lt;/gmd:contact&gt;
+  &lt;gmd:dateStamp&gt;
+    &lt;gco:Date&gt;2013-08-28&lt;/gco:Date&gt;
+  &lt;/gmd:dateStamp&gt;
+  &lt;gmd:metadataStandardName&gt;
+    &lt;gco:CharacterString&gt;ISO 19115-2 Geographic Information - Metadata - Part 2: Extensions for Imagery and Gridded Data&lt;/gco:CharacterString&gt;
+  &lt;/gmd:metadataStandardName&gt;
+  &lt;gmd:metadataStandardVersion&gt;
+    &lt;gco:CharacterString&gt;ISO 19115-2:2009(E)&lt;/gco:CharacterString&gt;
+  &lt;/gmd:metadataStandardVersion&gt;
+&lt;!--insert spatial information if needed as example below details--&gt;
+&lt;gmd:referenceSystemInfo&gt;
+&lt;gmd:MD_ReferenceSystem uuid=&quot;895cc120-95ed-11e0-aa80-0800200c9a66&quot;&gt;
+    &lt;gmd:referenceSystemIdentifier&gt;
+      &lt;gmd:RS_Identifier&gt;
+        &lt;gmd:authority&gt;
+          &lt;gmd:CI_Citation&gt;
+            &lt;gmd:title&gt;
+              &lt;gco:CharacterString&gt;WGS 84 / World Mercator&lt;/gco:CharacterString&gt;
+            &lt;/gmd:title&gt;
+            &lt;gmd:date&gt;
+              &lt;gmd:CI_Date&gt;
+                &lt;gmd:date&gt;
+                  &lt;gco:Date&gt;2006-06-02&lt;/gco:Date&gt;
+                &lt;/gmd:date&gt;
+                &lt;gmd:dateType&gt;
+                  &lt;gmd:CI_DateTypeCode codeList=&quot;http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode&quot; codeListValue=&quot;revision&quot;&gt;revision&lt;/gmd:CI_DateTypeCode&gt;
+                &lt;/gmd:dateType&gt;
+              &lt;/gmd:CI_Date&gt;
+            &lt;/gmd:date&gt;
+            &lt;gmd:citedResponsibleParty&gt;
+              &lt;gmd:CI_ResponsibleParty&gt;
+                &lt;gmd:contactInfo&gt;
+                  &lt;gmd:CI_Contact&gt;
+                    &lt;gmd:onlineResource&gt;
+                      &lt;gmd:CI_OnlineResource&gt;
+                        &lt;gmd:linkage&gt;
+                          &lt;gmd:URL&gt;
+                            http://www.epsg-registry.org/export.htm?gml=urn:ogc:def:crs:EPSG::3395
+                          &lt;/gmd:URL&gt;
+                        &lt;/gmd:linkage&gt;
+                      &lt;/gmd:CI_OnlineResource&gt;
+                    &lt;/gmd:onlineResource&gt;
+                  &lt;/gmd:CI_Contact&gt;
+                &lt;/gmd:contactInfo&gt;
+                &lt;gmd:role&gt;
+                  &lt;gmd:CI_RoleCode codeList=&quot;http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode&quot; codeListValue=&quot;resourceProvider&quot; codeSpace=&quot;001&quot;&gt;resourceProvider&lt;/gmd:CI_RoleCode&gt;
+                &lt;/gmd:role&gt;
+              &lt;/gmd:CI_ResponsibleParty&gt;
+            &lt;/gmd:citedResponsibleParty&gt;
+          &lt;/gmd:CI_Citation&gt;
+        &lt;/gmd:authority&gt;
+        &lt;gmd:code&gt;
+          &lt;gco:CharacterString&gt;urn:ogc:def:crs:EPSG::3395&lt;/gco:CharacterString&gt;
+        &lt;/gmd:code&gt;
+      &lt;/gmd:RS_Identifier&gt;
+    &lt;/gmd:referenceSystemIdentifier&gt;
+  &lt;/gmd:MD_ReferenceSystem&gt;
+&lt;/gmd:referenceSystemInfo&gt;
+  &lt;gmd:identificationInfo&gt;
+    &lt;gmd:MD_DataIdentification&gt;
+      &lt;gmd:citation&gt;
+        &lt;gmd:CI_Citation&gt;
+          &lt;gmd:title&gt;
+            &lt;gco:CharacterString&gt;project_name&lt;/gco:CharacterString&gt;
+          &lt;/gmd:title&gt;
+          &lt;gmd:date&gt;
+            &lt;gmd:CI_Date&gt;
+              &lt;gmd:date&gt;
+                &lt;gco:Date&gt;9999-01-01&lt;/gco:Date&gt;
+              &lt;/gmd:date&gt;
+              &lt;gmd:dateType&gt;
+                &lt;gmd:CI_DateTypeCode codeList=&quot;http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode&quot; codeListValue=&quot;creation&quot;&gt;creation&lt;/gmd:CI_DateTypeCode&gt;
+              &lt;/gmd:dateType&gt;
+            &lt;/gmd:CI_Date&gt;
+          &lt;/gmd:date&gt;
+          &lt;!-- last_data_update --&gt;
+          &lt;gmd:date&gt;
+            &lt;gmd:CI_Date&gt;
+              &lt;gmd:date&gt;
+                &lt;gco:Date&gt;9999-01-01&lt;/gco:Date&gt;
+              &lt;/gmd:date&gt;
+              &lt;gmd:dateType&gt;
+                &lt;gmd:CI_DateTypeCode codeList=&quot;http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode&quot; codeListValue=&quot;revision&quot;&gt;revision&lt;/gmd:CI_DateTypeCode&gt;
+              &lt;/gmd:dateType&gt;
+            &lt;/gmd:CI_Date&gt;
+          &lt;/gmd:date&gt;
+        &lt;/gmd:CI_Citation&gt;
+      &lt;/gmd:citation&gt;
+      &lt;gmd:abstract&gt;
+        &lt;gco:CharacterString&gt;project_abstract&lt;/gco:CharacterString&gt;
+      &lt;/gmd:abstract&gt;
+      &lt;gmd:purpose&gt;
+        &lt;gco:CharacterString&gt;project_purpose&lt;/gco:CharacterString&gt;
+      &lt;/gmd:purpose&gt;
+      &lt;gmd:credit&gt;
+        &lt;gco:CharacterString&gt;data_acknowledgement&lt;/gco:CharacterString&gt;
+      &lt;/gmd:credit&gt;
+      &lt;gmd:pointOfContact&gt;
+        &lt;gmd:CI_ResponsibleParty&gt;
+          &lt;gmd:individualName&gt;
+            &lt;gco:CharacterString&gt;principal_investigator&lt;/gco:CharacterString&gt;
+          &lt;/gmd:individualName&gt;
+          &lt;gmd:organisationName&gt;
+            &lt;gco:CharacterString&gt;organization&lt;/gco:CharacterString&gt;
+          &lt;/gmd:organisationName&gt;
+          &lt;gmd:positionName&gt;
+            &lt;gco:CharacterString&gt;principal_investigator_position&lt;/gco:CharacterString&gt;
+          &lt;/gmd:positionName&gt;
+          &lt;gmd:contactInfo&gt;
+            &lt;gmd:CI_Contact&gt;
+              &lt;gmd:phone&gt;
+                &lt;gmd:CI_Telephone&gt;
+                  &lt;gmd:voice&gt;
+                    &lt;gco:CharacterString&gt;principal_investigator_phone&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:voice&gt;
+                  &lt;gmd:facsimile&gt;
+                    &lt;gco:CharacterString&gt;principal_investigator_fax&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:facsimile&gt;
+                &lt;/gmd:CI_Telephone&gt;
+              &lt;/gmd:phone&gt;
+              &lt;gmd:address&gt;
+                &lt;gmd:CI_Address&gt;
+                  &lt;gmd:city&gt;
+                    &lt;gco:CharacterString&gt;principal_investigator_city&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:city&gt;
+                  &lt;gmd:administrativeArea&gt;
+                    &lt;gco:CharacterString&gt;principal_investigator_state&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:administrativeArea&gt;
+                  &lt;gmd:postalCode&gt;
+                    &lt;gco:CharacterString&gt;principal_investigator_zip&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:postalCode&gt;
+                  &lt;gmd:country&gt;
+                    &lt;gco:CharacterString&gt;principal_investigator_country&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:country&gt;
+                  &lt;gmd:electronicMailAddress&gt;
+                    &lt;gco:CharacterString&gt;principal_investigator_address&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:electronicMailAddress&gt;
+                &lt;/gmd:CI_Address&gt;
+              &lt;/gmd:address&gt;
+              &lt;gmd:hoursOfService&gt;
+                &lt;gco:CharacterString&gt;template&lt;/gco:CharacterString&gt;
+              &lt;/gmd:hoursOfService&gt;
+              &lt;gmd:contactInstructions&gt;
+                &lt;gco:CharacterString&gt;contact_instruction&lt;/gco:CharacterString&gt;
+              &lt;/gmd:contactInstructions&gt;
+            &lt;/gmd:CI_Contact&gt;
+          &lt;/gmd:contactInfo&gt;
+          &lt;gmd:role&gt;
+            &lt;gmd:CI_RoleCode codeList=&quot;http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode&quot; codeListValue=&quot;principalInvestigator&quot;&gt;principalInvestigator&lt;/gmd:CI_RoleCode&gt;
+          &lt;/gmd:role&gt;
+        &lt;/gmd:CI_ResponsibleParty&gt;
+      &lt;/gmd:pointOfContact&gt;
+      &lt;gmd:resourceMaintenance&gt;
+        &lt;gmd:MD_MaintenanceInformation&gt;
+          &lt;gmd:maintenanceAndUpdateFrequency&gt;
+            &lt;!-- data_update_frequency will need to conform to the codelist values --&gt;
+            &lt;gmd:MD_MaintenanceFrequencyCode codeList=&quot;http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#MD_MaintenanceFrequencyCode&quot; codeListValue=&quot;code&quot;&gt;data_update_frequency&lt;/gmd:MD_MaintenanceFrequencyCode&gt;
+          &lt;/gmd:maintenanceAndUpdateFrequency&gt;
+          &lt;gmd:dateOfNextUpdate&gt;
+            &lt;gco:Date&gt;9999-01-01&lt;/gco:Date&gt;
+          &lt;/gmd:dateOfNextUpdate&gt;
+          &lt;gmd:maintenanceNote&gt;
+            &lt;gco:CharacterString&gt;data_update_note&lt;/gco:CharacterString&gt;
+          &lt;/gmd:maintenanceNote&gt;
+          &lt;gmd:contact&gt;
+            &lt;gmd:CI_ResponsibleParty&gt;
+              &lt;gmd:individualName&gt;
+                &lt;gco:CharacterString&gt;data_center_contact_name&lt;/gco:CharacterString&gt;
+              &lt;/gmd:individualName&gt;
+              &lt;gmd:organisationName&gt;
+                &lt;gco:CharacterString&gt;data_center&lt;/gco:CharacterString&gt;
+              &lt;/gmd:organisationName&gt;
+              &lt;gmd:positionName&gt;
+                &lt;gco:CharacterString&gt;data_center_contact_position&lt;/gco:CharacterString&gt;
+              &lt;/gmd:positionName&gt;
+              &lt;gmd:contactInfo&gt;
+                &lt;gmd:CI_Contact&gt;
+                  &lt;gmd:phone&gt;
+                    &lt;gmd:CI_Telephone&gt;
+                      &lt;gmd:voice&gt;
+                        &lt;gco:CharacterString&gt;data_center_phone&lt;/gco:CharacterString&gt;
+                      &lt;/gmd:voice&gt;
+                      &lt;gmd:facsimile&gt;
+                        &lt;gco:CharacterString&gt;data_center_fax&lt;/gco:CharacterString&gt;
+                      &lt;/gmd:facsimile&gt;
+                    &lt;/gmd:CI_Telephone&gt;
+                  &lt;/gmd:phone&gt;
+                  &lt;gmd:address&gt;
+                    &lt;gmd:CI_Address&gt;
+                      &lt;gmd:deliveryPoint&gt;
+                        &lt;gco:CharacterString&gt;template&lt;/gco:CharacterString&gt;
+                      &lt;/gmd:deliveryPoint&gt;
+                      &lt;gmd:city&gt;
+                        &lt;gco:CharacterString&gt;data_center_city&lt;/gco:CharacterString&gt;
+                      &lt;/gmd:city&gt;
+                      &lt;gmd:administrativeArea&gt;
+                        &lt;gco:CharacterString&gt;data_center_state&lt;/gco:CharacterString&gt;
+                      &lt;/gmd:administrativeArea&gt;
+                      &lt;gmd:postalCode&gt;
+                        &lt;gco:CharacterString&gt;data_center_zip&lt;/gco:CharacterString&gt;
+                      &lt;/gmd:postalCode&gt;
+                      &lt;gmd:country&gt;
+                        &lt;gco:CharacterString&gt;data_center_country&lt;/gco:CharacterString&gt;
+                      &lt;/gmd:country&gt;
+                      &lt;gmd:electronicMailAddress&gt;
+                        &lt;gco:CharacterString&gt;data_center_address&lt;/gco:CharacterString&gt;
+                      &lt;/gmd:electronicMailAddress&gt;
+                    &lt;/gmd:CI_Address&gt;
+                  &lt;/gmd:address&gt;
+                  &lt;gmd:onlineResource&gt;
+                    &lt;gmd:CI_OnlineResource&gt;
+                      &lt;gmd:linkage&gt;
+                        &lt;gmd:URL&gt;data_center_website&lt;/gmd:URL&gt;
+                      &lt;/gmd:linkage&gt;
+                    &lt;/gmd:CI_OnlineResource&gt;
+                  &lt;/gmd:onlineResource&gt;
+                  &lt;gmd:hoursOfService&gt;
+                    &lt;gco:CharacterString&gt;data_center_hours&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:hoursOfService&gt;
+                  &lt;gmd:contactInstructions&gt;
+                    &lt;gco:CharacterString&gt;contact_instruction_data_center&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:contactInstructions&gt;
+                &lt;/gmd:CI_Contact&gt;
+              &lt;/gmd:contactInfo&gt;
+              &lt;gmd:role&gt;
+                &lt;gmd:CI_RoleCode codeList=&quot;http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode&quot; codeListValue=&quot;code&quot;&gt;code&lt;/gmd:CI_RoleCode&gt;
+              &lt;/gmd:role&gt;
+            &lt;/gmd:CI_ResponsibleParty&gt;
+          &lt;/gmd:contact&gt;
+        &lt;/gmd:MD_MaintenanceInformation&gt;
+      &lt;/gmd:resourceMaintenance&gt;
+      &lt;gmd:resourceFormat&gt;
+        &lt;gmd:MD_Format&gt;
+          &lt;gmd:name&gt;
+            &lt;gco:CharacterString&gt;data_type&lt;/gco:CharacterString&gt;
+          &lt;/gmd:name&gt;
+          &lt;gmd:version&gt;
+            &lt;gco:CharacterString&gt;data_file_version&lt;/gco:CharacterString&gt;
+          &lt;/gmd:version&gt;
+          &lt;gmd:specification&gt;
+            &lt;gco:CharacterString&gt;data_file_name&lt;/gco:CharacterString&gt;
+          &lt;/gmd:specification&gt;
+          &lt;gmd:fileDecompressionTechnique&gt;
+            &lt;gco:CharacterString&gt;compression_technique&lt;/gco:CharacterString&gt;
+          &lt;/gmd:fileDecompressionTechnique&gt;
+        &lt;/gmd:MD_Format&gt;
+      &lt;/gmd:resourceFormat&gt;
+      &lt;!-- ARE THERE CONTROLLED VOCABULARIES TO REPRESENT THESE VALUES? --&gt;
+      &lt;gmd:descriptiveKeywords&gt;
+        &lt;gmd:MD_Keywords&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;ambient_noise&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;animal_sound&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;anthropogenic_noise&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;!--add type of keyword--&gt;
+          &lt;gmd:type&gt;
+              &lt;gmd:MD_KeywordTypeCode codeList=&quot;http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode&quot; codeListValue=&quot;theme&quot; codeSpace=&quot;005&quot;&gt;theme&lt;/gmd:MD_KeywordTypeCode&gt;
+        &lt;/gmd:type&gt;
+          &lt;!--add name of thesaurus that these values come from...if none or user defined use citation as below--&gt;
+          &lt;gmd:thesaurusName&gt;
+              &lt;gmd:CI_Citation&gt;
+                &lt;gmd:title&gt;
+                    &lt;gco:CharacterString&gt;None&lt;/gco:CharacterString&gt;
+                &lt;/gmd:title&gt;
+                &lt;gmd:date gco:nilReason=&quot;unknown&quot;/&gt;
+             &lt;/gmd:CI_Citation&gt;
+          &lt;/gmd:thesaurusName&gt;
+        &lt;/gmd:MD_Keywords&gt;
+      &lt;/gmd:descriptiveKeywords&gt;
+      &lt;!-- HOW ARE THESE VALUES DETERMINED? --&gt;
+      &lt;gmd:descriptiveKeywords&gt;
+        &lt;gmd:MD_Keywords&gt;
+          &lt;gmd:keyword&gt;
+            &lt;!-- GET A LIST OF LOCATION KEYWORDS FROM GCMD --&gt;
+            &lt;gco:CharacterString&gt;Pacific_Ocean&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;Atlantic_Ocean&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;Arctic_Ocean&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;Indian_Ocean&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:type&gt;
+            &lt;gmd:MD_KeywordTypeCode codeList=&quot;http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode&quot; codeListValue=&quot;place&quot;&gt;place&lt;/gmd:MD_KeywordTypeCode&gt;
+          &lt;/gmd:type&gt;
+        &lt;/gmd:MD_Keywords&gt;
+      &lt;/gmd:descriptiveKeywords&gt;
+      &lt;!-- WOULD IT BE ALL OF THESE VALUES OR SOME? --&gt;
+      &lt;gmd:descriptiveKeywords&gt;
+        &lt;gmd:MD_Keywords&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;vessel&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;glider&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;drifting_buoy&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;moored_buoy&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;bottom_mounted&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:type&gt;
+            &lt;gmd:MD_KeywordTypeCode codeList=&quot;http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode&quot; codeListValue=&quot;platform&quot;&gt;platform&lt;/gmd:MD_KeywordTypeCode&gt;
+          &lt;/gmd:type&gt;
+        &lt;/gmd:MD_Keywords&gt;
+      &lt;/gmd:descriptiveKeywords&gt;
+      &lt;gmd:descriptiveKeywords&gt;
+        &lt;gmd:MD_Keywords&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;hydrophone_pressure_sensor&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;hydrophone_vector_sensor&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;preamplifier&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;AD_converter&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;recorder_analogue&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;recorder_digital&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;other_signal_conditioning&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:type&gt;
+            &lt;gmd:MD_KeywordTypeCode codeList=&quot;http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode&quot; codeListValue=&quot;instrument&quot;&gt;instrument&lt;/gmd:MD_KeywordTypeCode&gt;
+          &lt;/gmd:type&gt;
+
+        &lt;/gmd:MD_Keywords&gt;
+      &lt;/gmd:descriptiveKeywords&gt;
+
+      &lt;gmd:descriptiveKeywords&gt;
+        &lt;gmd:MD_Keywords&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;NOAA Northeast Fisheries Science Center&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;NOAA Southeast Fisheries Science Center&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;NOAA Northwest Fisheries Science Center&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;NOAA Southwest Fisheries Science Center&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;NOAA Alaska Fisheries Science Center&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:keyword&gt;
+            &lt;gco:CharacterString&gt;NOAA Pacific Islands Fisheries Science Center&lt;/gco:CharacterString&gt;
+          &lt;/gmd:keyword&gt;
+          &lt;gmd:type&gt;
+            &lt;gmd:MD_KeywordTypeCode codeList=&quot;http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode&quot; codeListValue=&quot;dataCenter&quot;&gt;dataCenter&lt;/gmd:MD_KeywordTypeCode&gt;
+          &lt;/gmd:type&gt;
+        &lt;/gmd:MD_Keywords&gt;
+      &lt;/gmd:descriptiveKeywords&gt;
+      &lt;gmd:resourceConstraints&gt;
+        &lt;gmd:MD_Constraints&gt;
+          &lt;gmd:useLimitation&gt;
+            &lt;gco:CharacterString&gt;data_restriction&lt;/gco:CharacterString&gt;
+          &lt;/gmd:useLimitation&gt;
+        &lt;/gmd:MD_Constraints&gt;
+      &lt;/gmd:resourceConstraints&gt;
+      &lt;gmd:language&gt;
+        &lt;gco:CharacterString&gt;eng; USA&lt;/gco:CharacterString&gt;
+      &lt;/gmd:language&gt;      
+
+      &lt;gmd:topicCategory&gt;
+        &lt;gmd:MD_TopicCategoryCode&gt;oceans&lt;/gmd:MD_TopicCategoryCode&gt;
+      &lt;/gmd:topicCategory&gt;
+
+      &lt;gmd:extent&gt;
+        &lt;gmd:EX_Extent id=&quot;boundingExtent&quot;&gt;
+          &lt;gmd:description&gt;
+            &lt;gco:CharacterString&gt;project_area_description&lt;/gco:CharacterString&gt;
+          &lt;/gmd:description&gt;
+          &lt;gmd:geographicElement&gt;
+            &lt;gmd:EX_GeographicBoundingBox&gt;
+              &lt;gmd:westBoundLongitude&gt;
+
+                &lt;gco:Decimal&gt;-180&lt;/gco:Decimal&gt;
+              &lt;/gmd:westBoundLongitude&gt;
+              &lt;gmd:eastBoundLongitude&gt;
+
+                &lt;gco:Decimal&gt;180&lt;/gco:Decimal&gt;
+              &lt;/gmd:eastBoundLongitude&gt;
+              &lt;gmd:southBoundLatitude&gt;
+
+                &lt;gco:Decimal&gt;-90&lt;/gco:Decimal&gt;
+              &lt;/gmd:southBoundLatitude&gt;
+              &lt;gmd:northBoundLatitude&gt;
+
+                &lt;gco:Decimal&gt;90&lt;/gco:Decimal&gt;
+              &lt;/gmd:northBoundLatitude&gt;
+            &lt;/gmd:EX_GeographicBoundingBox&gt;
+          &lt;/gmd:geographicElement&gt;
+          &lt;gmd:temporalElement&gt;
+            &lt;gmd:EX_TemporalExtent id=&quot;boundingTemporalExtent&quot;&gt;
+              &lt;gmd:extent&gt;
+                &lt;gml:TimePeriod gml:id=&quot;ID072&quot;&gt;
+                  &lt;!--                 project_start_date--&gt;
+                  &lt;gml:beginPosition&gt;9999-01-01&lt;/gml:beginPosition&gt;
+                  &lt;!--                  project_end_date--&gt;
+                  &lt;gml:endPosition&gt;9999-01-01&lt;/gml:endPosition&gt;
+                &lt;/gml:TimePeriod&gt;
+              &lt;/gmd:extent&gt;
+            &lt;/gmd:EX_TemporalExtent&gt;
+          &lt;/gmd:temporalElement&gt;
+          &lt;gmd:verticalElement&gt;
+            &lt;gmd:EX_VerticalExtent&gt;
+              &lt;gmd:minimumValue&gt;
+                &lt;!--                &lt;gco:Real&gt;minimum_sensor_depth&lt;/gco:Real&gt;--&gt;
+                &lt;gco:Real&gt;99&lt;/gco:Real&gt;
+                &lt;!--                &lt;gco:Real&gt;minimum_sensor_depth&lt;/gco:Real&gt;--&gt;
+              &lt;/gmd:minimumValue&gt;
+              &lt;gmd:maximumValue&gt;
+                &lt;!--                &lt;gco:Real&gt;maximum_sensor_depth&lt;/gco:Real&gt;--&gt;
+                &lt;gco:Real&gt;99&lt;/gco:Real&gt;
+                &lt;!--                &lt;gco:Real&gt;maximum_sensor_depth&lt;/gco:Real&gt;--&gt;
+              &lt;/gmd:maximumValue&gt;
+              &lt;!-- WHAT ARE THE VERTICAL REFERENCES USUALLY USED? WILL THIS INFO BE AVAILABLE TO POPULATE THE METADATA RECORD? --&gt;
+              &lt;gmd:verticalCRS&gt;
+                &lt;gml:VerticalCRS gml:id=&quot;ID384&quot;&gt;
+                  &lt;gml:description&gt;template&lt;/gml:description&gt;
+                  &lt;gml:identifier codeSpace=&quot;template&quot;&gt;template&lt;/gml:identifier&gt;
+                  &lt;gml:name&gt;template&lt;/gml:name&gt;
+                  &lt;gml:remarks&gt;template&lt;/gml:remarks&gt;
+                  &lt;gml:scope&gt;template&lt;/gml:scope&gt;
+                  &lt;gml:verticalCS&gt;
+                    &lt;gml:VerticalCS gml:id=&quot;ID058&quot;&gt;
+                      &lt;gml:description&gt;template&lt;/gml:description&gt;
+                      &lt;gml:identifier codeSpace=&quot;template&quot;&gt;template&lt;/gml:identifier&gt;
+                      &lt;gml:name&gt;template&lt;/gml:name&gt;
+                      &lt;gml:remarks&gt;template&lt;/gml:remarks&gt;
+                      &lt;gml:axis&gt;
+                        &lt;gml:CoordinateSystemAxis uom=&quot;template&quot; gml:id=&quot;ID060&quot;&gt;
+                          &lt;gml:description&gt;template&lt;/gml:description&gt;
+                          &lt;gml:identifier codeSpace=&quot;template&quot;&gt;template&lt;/gml:identifier&gt;
+                          &lt;gml:name&gt;template&lt;/gml:name&gt;
+                          &lt;gml:remarks&gt;template&lt;/gml:remarks&gt;
+                          &lt;gml:axisAbbrev&gt;template&lt;/gml:axisAbbrev&gt;
+                          &lt;gml:axisDirection codeSpace=&quot;template&quot;&gt;template&lt;/gml:axisDirection&gt;
+                          &lt;gml:minimumValue&gt;99&lt;/gml:minimumValue&gt;
+                          &lt;gml:maximumValue&gt;99&lt;/gml:maximumValue&gt;
+                          &lt;gml:rangeMeaning codeSpace=&quot;template&quot;&gt;template&lt;/gml:rangeMeaning&gt;
+                        &lt;/gml:CoordinateSystemAxis&gt;
+                      &lt;/gml:axis&gt;
+                    &lt;/gml:VerticalCS&gt;
+                  &lt;/gml:verticalCS&gt;
+                  &lt;gml:verticalDatum&gt;
+                    &lt;gml:VerticalDatum gml:id=&quot;ID062&quot;&gt;
+                      &lt;gml:metaDataProperty&gt;
+                        &lt;gml:GenericMetaData/&gt;
+                      &lt;/gml:metaDataProperty&gt;
+                      &lt;!--&lt;gml:description&gt;template&lt;/gml:description&gt;--&gt;
+                      &lt;!--&lt;gml:descriptionReference/&gt;--&gt;
+                      &lt;gml:identifier codeSpace=&quot;template&quot;&gt;template&lt;/gml:identifier&gt;
+                      &lt;!--&lt;gml:name&gt;template&lt;/gml:name&gt;--&gt;
+                      &lt;!--&lt;gml:remarks&gt;template&lt;/gml:remarks&gt;--&gt;
+                      &lt;gml:scope&gt;template&lt;/gml:scope&gt;
+                    &lt;/gml:VerticalDatum&gt;
+                  &lt;/gml:verticalDatum&gt;
+                &lt;/gml:VerticalCRS&gt;
+              &lt;/gmd:verticalCRS&gt;
+            &lt;/gmd:EX_VerticalExtent&gt;
+          &lt;/gmd:verticalElement&gt;
+        &lt;/gmd:EX_Extent&gt;
+      &lt;/gmd:extent&gt;
+      &lt;gmd:supplementalInformation&gt;
+        &lt;gco:CharacterString&gt;supplemental_info&lt;/gco:CharacterString&gt;
+      &lt;/gmd:supplementalInformation&gt;
+    &lt;/gmd:MD_DataIdentification&gt;
+  &lt;/gmd:identificationInfo&gt;
+  &lt;gmi:acquisitionInformation&gt;
+    &lt;gmi:MI_AcquisitionInformation&gt;
+      &lt;!-- VESSEL --&gt;
+      &lt;gmi:platform&gt;
+        &lt;!--      vessel_name,acoustic_sampling_start_date--&gt;
+        &lt;gmi:MI_Platform&gt;
+          &lt;gmi:identifier&gt;
+            &lt;gmd:MD_Identifier&gt;
+              &lt;gmd:code&gt;
+                &lt;gco:CharacterString&gt;vessel_id&lt;/gco:CharacterString&gt;
+              &lt;/gmd:code&gt;
+            &lt;/gmd:MD_Identifier&gt;
+          &lt;/gmi:identifier&gt;
+          &lt;gmi:description&gt;
+            &lt;gco:CharacterString&gt;platform_detail&lt;/gco:CharacterString&gt;
+          &lt;/gmi:description&gt;
+          &lt;!-- HYDROPHONE --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!-- TO DO: PUT THIS INFO IN CONTENTINFO SECTION: hydrophone_maker_model,calibration_date,hydrophone_sensitivity,hydrophone_id,other_info --&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;hydrophone_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;hydrophone_type&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;hydrophone_maker_model,calibration_date,hydrophone_sensitivity,hydrophone_id,other_info&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- PREAMPLIFIER --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;preamplifier_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;preamplifier_maker_model&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;preamplifier_gain, other_info&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- CONVERTER --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!-- AD_converter_maker_model,sample_rate,AD_converter_id,other_info--&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;AD_converter_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;AD_converter_maker_model&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;sample_rate,other_info &lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- RECORDER --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!--recorder_maker_model--&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;recorder_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;recorder_type&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;recorder_gain, other_info&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- DEVICE --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!-- 
+              device_maker_model
+              device_function              
+              other_info
+              additional_signal_con_type
+            --&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;device_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type/&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;device_maker_model, device_function, other_info, additional_signal_con_type&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+
+        &lt;/gmi:MI_Platform&gt;
+      &lt;/gmi:platform&gt;
+      &lt;!-- GLIDER --&gt;
+      &lt;gmi:platform&gt;
+        &lt;!-- 
+          glider_name,
+          acoustic_sampling_start_date,
+        --&gt;
+        &lt;gmi:MI_Platform&gt;
+          &lt;gmi:identifier&gt;
+            &lt;gmd:MD_Identifier&gt;
+              &lt;gmd:code&gt;
+                &lt;gco:CharacterString&gt;glider_id&lt;/gco:CharacterString&gt;
+              &lt;/gmd:code&gt;
+            &lt;/gmd:MD_Identifier&gt;
+          &lt;/gmi:identifier&gt;
+          &lt;gmi:description&gt;
+            &lt;gco:CharacterString&gt;platform_detail&lt;/gco:CharacterString&gt;
+          &lt;/gmi:description&gt;
+          &lt;!-- HYDROPHONE --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!-- TO DO: PUT THIS INFO IN CONTENTINFO SECTION: hydrophone_maker_model,calibration_date,hydrophone_sensitivity,hydrophone_id,other_info --&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;hydrophone_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;hydrophone_type&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;hydrophone_maker_model,calibration_date,hydrophone_sensitivity,hydrophone_id,other_info&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- PREAMPLIFIER --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;preamplifier_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;preamplifier_maker_model&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;preamplifier_gain, other_info&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- CONVERTER --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!-- AD_converter_maker_model,sample_rate,AD_converter_id,other_info--&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;AD_converter_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;AD_converter_maker_model&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;sample_rate,other_info &lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- RECORDER --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!--recorder_maker_model--&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;recorder_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;recorder_type&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;recorder_gain, other_info&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- DEVICE --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!-- 
+              device_maker_model
+              device_function              
+              other_info
+              additional_signal_con_type
+            --&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;device_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type/&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;device_maker_model, device_function, other_info, additional_signal_con_type&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+        &lt;/gmi:MI_Platform&gt;
+      &lt;/gmi:platform&gt;
+      &lt;!-- DRIFITING BUOY --&gt;
+      &lt;gmi:platform&gt;
+        &lt;!--drifting_buoy_name, 
+        acoustic_sampling_start_date--&gt;
+        &lt;gmi:MI_Platform&gt;
+          &lt;gmi:identifier&gt;
+            &lt;gmd:MD_Identifier&gt;
+              &lt;gmd:code&gt;
+                &lt;gco:CharacterString&gt;drifting_buoy_id&lt;/gco:CharacterString&gt;
+              &lt;/gmd:code&gt;
+            &lt;/gmd:MD_Identifier&gt;
+          &lt;/gmi:identifier&gt;
+          &lt;gmi:description&gt;
+            &lt;gco:CharacterString&gt;platform_detail&lt;/gco:CharacterString&gt;
+          &lt;/gmi:description&gt;
+          &lt;!-- HYDROPHONE --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!-- TO DO: PUT THIS INFO IN CONTENTINFO SECTION: hydrophone_maker_model,calibration_date,hydrophone_sensitivity,hydrophone_id,other_info --&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;hydrophone_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;hydrophone_type&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;hydrophone_maker_model,calibration_date,hydrophone_sensitivity,hydrophone_id,other_info&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- PREAMPLIFIER --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;preamplifier_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;preamplifier_maker_model&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;preamplifier_gain, other_info&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- CONVERTER --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!-- AD_converter_maker_model,sample_rate,AD_converter_id,other_info--&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;AD_converter_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;AD_converter_maker_model&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;sample_rate,other_info &lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- RECORDER --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!--recorder_maker_model--&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;recorder_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;recorder_type&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;recorder_gain, other_info&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- DEVICE --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!-- 
+              device_maker_model
+              device_function              
+              other_info
+              additional_signal_con_type
+            --&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;device_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type/&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;device_maker_model, device_function, other_info, additional_signal_con_type&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+        &lt;/gmi:MI_Platform&gt;
+      &lt;/gmi:platform&gt;
+      &lt;gmi:platform&gt;
+        &lt;!--moored_buoy_name
+        acoustic_sampling_start_date--&gt;
+        &lt;gmi:MI_Platform&gt;
+          &lt;gmi:identifier&gt;
+            &lt;gmd:MD_Identifier&gt;
+              &lt;gmd:code&gt;
+                &lt;gco:CharacterString&gt;moored_buoy_id&lt;/gco:CharacterString&gt;
+              &lt;/gmd:code&gt;
+            &lt;/gmd:MD_Identifier&gt;
+          &lt;/gmi:identifier&gt;
+          &lt;gmi:description&gt;
+            &lt;gco:CharacterString&gt;platform_detail&lt;/gco:CharacterString&gt;
+          &lt;/gmi:description&gt;
+          &lt;!-- HYDROPHONE --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!-- TO DO: PUT THIS INFO IN CONTENTINFO SECTION: hydrophone_maker_model,calibration_date,hydrophone_sensitivity,hydrophone_id,other_info --&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;hydrophone_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;hydrophone_type&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;hydrophone_maker_model,calibration_date,hydrophone_sensitivity,hydrophone_id,other_info&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- PREAMPLIFIER --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;preamplifier_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;preamplifier_maker_model&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;preamplifier_gain, other_info&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- CONVERTER --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!-- AD_converter_maker_model,sample_rate,AD_converter_id,other_info--&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;AD_converter_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;AD_converter_maker_model&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;sample_rate,other_info &lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- RECORDER --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!--recorder_maker_model--&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;recorder_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;recorder_type&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;recorder_gain, other_info&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- DEVICE --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!-- 
+              device_maker_model
+              device_function              
+              other_info
+              additional_signal_con_type
+            --&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;device_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type/&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;device_maker_model, device_function, other_info, additional_signal_con_type&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+        &lt;/gmi:MI_Platform&gt;
+      &lt;/gmi:platform&gt;
+      &lt;gmi:platform&gt;
+        &lt;!--suspended_platform_name,acoustic_sampling_start_date--&gt;
+        &lt;gmi:MI_Platform&gt;
+          &lt;gmi:identifier&gt;
+            &lt;gmd:MD_Identifier&gt;
+              &lt;gmd:code&gt;
+                &lt;gco:CharacterString&gt;suspended_platform_id&lt;/gco:CharacterString&gt;
+              &lt;/gmd:code&gt;
+            &lt;/gmd:MD_Identifier&gt;
+          &lt;/gmi:identifier&gt;
+          &lt;gmi:description&gt;
+            &lt;gco:CharacterString&gt;platform_detail&lt;/gco:CharacterString&gt;
+          &lt;/gmi:description&gt;
+          &lt;!-- HYDROPHONE --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!-- TO DO: PUT THIS INFO IN CONTENTINFO SECTION: hydrophone_maker_model,calibration_date,hydrophone_sensitivity,hydrophone_id,other_info --&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;hydrophone_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;hydrophone_type&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;hydrophone_maker_model,calibration_date,hydrophone_sensitivity,hydrophone_id,other_info&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- PREAMPLIFIER --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;preamplifier_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;preamplifier_maker_model&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;preamplifier_gain, other_info&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- CONVERTER --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!-- AD_converter_maker_model,sample_rate,AD_converter_id,other_info--&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;AD_converter_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;AD_converter_maker_model&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;sample_rate,other_info &lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- RECORDER --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!--recorder_maker_model--&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;recorder_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;recorder_type&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;recorder_gain, other_info&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- DEVICE --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!-- 
+              device_maker_model
+              device_function              
+              other_info
+              additional_signal_con_type
+            --&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;device_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type/&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;device_maker_model, device_function, other_info, additional_signal_con_type&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+        &lt;/gmi:MI_Platform&gt;
+      &lt;/gmi:platform&gt;
+      &lt;gmi:platform&gt;
+        &lt;!--bottom_mounted_platform_name
+        acoustic_sampling_start_date--&gt;
+        &lt;gmi:MI_Platform&gt;
+          &lt;gmi:identifier&gt;
+            &lt;gmd:MD_Identifier&gt;
+              &lt;gmd:code&gt;
+                &lt;gco:CharacterString&gt;bottom_mounted_platform_id&lt;/gco:CharacterString&gt;
+              &lt;/gmd:code&gt;
+            &lt;/gmd:MD_Identifier&gt;
+          &lt;/gmi:identifier&gt;
+          &lt;gmi:description&gt;
+            &lt;gco:CharacterString&gt;platform_detail&lt;/gco:CharacterString&gt;
+          &lt;/gmi:description&gt;
+          &lt;!-- HYDROPHONE --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!-- TO DO: PUT THIS INFO IN CONTENTINFO SECTION: hydrophone_maker_model,calibration_date,hydrophone_sensitivity,hydrophone_id,other_info --&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;hydrophone_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;hydrophone_type&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;hydrophone_maker_model,calibration_date,hydrophone_sensitivity,hydrophone_id,other_info&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- PREAMPLIFIER --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;preamplifier_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;preamplifier_maker_model&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;preamplifier_gain, other_info&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- CONVERTER --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!-- AD_converter_maker_model,sample_rate,AD_converter_id,other_info--&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;AD_converter_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;AD_converter_maker_model&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;sample_rate,other_info &lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- RECORDER --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!--recorder_maker_model--&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;recorder_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type&gt;
+                &lt;gco:CharacterString&gt;recorder_type&lt;/gco:CharacterString&gt;
+              &lt;/gmi:type&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;recorder_gain, other_info&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+          &lt;!-- DEVICE --&gt;
+          &lt;gmi:instrument&gt;
+            &lt;!-- 
+              device_maker_model
+              device_function              
+              other_info
+              additional_signal_con_type
+            --&gt;
+            &lt;gmi:MI_Instrument&gt;
+              &lt;gmi:identifier&gt;
+                &lt;gmd:MD_Identifier&gt;
+                  &lt;gmd:code&gt;
+                    &lt;gco:CharacterString&gt;device_id&lt;/gco:CharacterString&gt;
+                  &lt;/gmd:code&gt;
+                &lt;/gmd:MD_Identifier&gt;
+              &lt;/gmi:identifier&gt;
+              &lt;gmi:type/&gt;
+              &lt;gmi:description&gt;
+                &lt;gco:CharacterString&gt;device_maker_model, device_function, other_info, additional_signal_con_type&lt;/gco:CharacterString&gt;
+              &lt;/gmi:description&gt;
+            &lt;/gmi:MI_Instrument&gt;
+          &lt;/gmi:instrument&gt;
+        &lt;/gmi:MI_Platform&gt;
+      &lt;/gmi:platform&gt;
+    &lt;/gmi:MI_AcquisitionInformation&gt;
+  &lt;/gmi:acquisitionInformation&gt;
+&lt;/gmi:MI_Metadata&gt;
+
+</code></pre>
+
+<h1 id="toc_10">REFERENCE INFORMATION</h1>
+
+<h2 id="toc_11">Contribution</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Association</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><strong>Shane Guan</strong></td>
+<td align="left">NOAA/National Marine Fisheries Service, Office of Protected Resources Silver Spring, MD, USA</td>
+</tr>
+
+<tr>
+<td align="left"><a href="Hassan.Moustahfid@noaa.gov"><strong>Hassan Moustahfid</strong></a></td>
+<td align="left">NOAA, U.S. Integrated Ocean Observing System Program Office (<strong>corresponding author</strong>)</td>
+</tr>
+
+<tr>
+<td align="left"><strong>Anna Milan</strong></td>
+<td align="left">NOAA, National Geophysical Data Center, Boulder, CO, USA</td>
+</tr>
+
+<tr>
+<td align="left"><strong>Jacqueline Mize</strong></td>
+<td align="left">NOAA, National Coastal Data Development Center, Stennis, MS, USA</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="toc_12">Validation</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Association</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><strong>Zdenka Willis</strong></td>
+<td align="left">Director of U.S. Integrated Ocean Observing System Program Office</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="toc_13">Revisions</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">Date</th>
+<th align="center">Version</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">August 2014</td>
+<td align="center">1.0</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="toc_14">Acknowledgments</h2>
+
+<p>Special thanks go to Sofia VanParijs (NOAA, NEFSC), Jason Gedamke (NOAA, NMFS OS&amp;T) for comments and suggestions that considerably improved this document content.  We also appreciate the support from Jolie Harrison (NOAA, NMFS OPR), Zdenka Willis (US IOOS), Charlie Alexander (IOOS), and Dr. Christopher Fox (NGDC) for supporting this joint effort.</p>
+
+<h2 id="toc_15">Endorsement Disclaimer</h2>
+
+<p>Mention of a commercial company or product does not constitute an endorsement by NOAA. Use of information from this publication for publicity or advertising purposes concerning proprietary products or the tests of such products is not authorized.</p>
+
+<h2 id="toc_16">Citation</h2>
+
+<ul>
+<li><a href="https://github.com/abirger/animal-telemetry/blob/master/doc/noaa_passive_acoustic_metadata_convention_v1.0-FF.pdf?raw=true"><strong>The PDF version of this document</strong></a></li>
+</ul>
+
+<p>&nbsp; <br></p>
+
+</div>
+
+
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+  </body>
+</html>
+
