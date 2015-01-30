@@ -5,7 +5,7 @@ layoutdir = "layouts"
 publishdir = "public"
 languageCode = "en-us"
 [params]
-  Title = "Strategic Plan & Recommendations for ATN"
+  Title = "National Animal Telemetry Network"
   Tagline = "Meeting Nation's Needs for Biological and Environmental Monitoring"
 [params.Github]
   Head = "master"
