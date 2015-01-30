@@ -4,7 +4,7 @@ type = "post"
 draft = false
 sidebar = true
 date = 2014-03-04T07:56:39Z
-title = "A Metadata Convention for Passive Acoustic Recordings"
+title = "Metadata Convention for Passive Acoustic Recordings"
 
 +++
 
