@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile"> 
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>
+    
+      IOOS Animal Acoustic Telemetry (AAT) Data Project: Improving Access to AAT Observations &middot; National Animal Telemetry Network
+    
+  </title>
+
+  
+  <link rel="stylesheet" href="http://ioos.github.io/animal-telemetry/css/poole.css">
+  <link rel="stylesheet" href="http://ioos.github.io/animal-telemetry/css/syntax.css">
+  <link rel="stylesheet" href="http://ioos.github.io/animal-telemetry/css/lanyon.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://ioos.github.io/animal-telemetry/assets/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="http://ioos.github.io/animal-telemetry/assets/favicon.ico">
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://ioos.github.io/animal-telemetry/atom.xml">
+</head>
+
+
+  <body>
+
+    
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p align="center">&middot; <a href="http://ioos.github.io/" target="_blank">IOOS GitHub Pages</a> &middot; <br>
+	a collection of IOOS documentation and software</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item " href="http://ioos.github.io/animal-telemetry/">Home</a>
+
+
+  <div class="sidebar-item">
+    <p>Documents</p>
+  </div>
+
+<p style="text-align:right"> 
+    
+    
+      
+        <a class="sidebar-nav-item-list " href="http://ioos.github.io/animal-telemetry/about/">ABOUT: National Animal Telemetry Network</a>
+      
+    
+      
+        <a class="sidebar-nav-item-list  active " href="http://ioos.github.io/animal-telemetry/aat_data_ioostech_wiki/">IOOS Animal Acoustic Telemetry (AAT) Data Project: Improving Access to AAT Observations</a>
+      
+    
+      
+        <a class="sidebar-nav-item-list " href="http://ioos.github.io/animal-telemetry/animal-telemetry-plan/">Strategic Plan And Recommendations for a National ATN through U.S. IOOS</a>
+      
+    
+</p>
+<p style="text-align:right">
+      
+</p>
+
+    <a class="sidebar-nav-item" href="https://github.com/ioos/animal-telemetry/archive/master.zip">Download</a>
+    <a class="sidebar-nav-item" href="https://github.com/ioos/animal-telemetry">GitHub repository</a>
+    <span class="sidebar-nav-item">Currently on master</span>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>&copy; 2014 U.S. IOOS. Rights reserved</p>
+  </div>
+</div>
+
+
+    
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h2 class="masthead-title">
+		  <a href="http://ioos.github.io/animal-telemetry/" title="Home"> National Animal Telemetry Network &middot; 
+		  <small>Meeting Nation&#39;s Needs for Biological and Environmental Monitoring</small>
+		  <img src="http://ioos.github.io/animal-telemetry/images/ioos_blue2.png" alt="Smiley face" align="right" /></a>
+		  </h2>
+        </div>
+      </div>
+
+      <div class="container content">
+
+
+<div class="post">
+  <h1 class="post-title">IOOS Animal Acoustic Telemetry (AAT) Data Project: Improving Access to AAT Observations</h1>
+    <div id="toc" class="well col-md-4 col-sm-6">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#introduction-and-objectives:963dab0feb8b0e7eec9976aa902a19d8">Introduction and Objectives</a></li>
+<li><a href="#principal-project-stakeholders-and-other-partners:963dab0feb8b0e7eec9976aa902a19d8">Principal Project Stakeholders and Other Partners</a></li>
+<li><a href="#project-documentation-and-reports:963dab0feb8b0e7eec9976aa902a19d8">Project Documentation and Reports</a></li>
+<li><a href="#project-data-services:963dab0feb8b0e7eec9976aa902a19d8">Project Data Services</a></li>
+<li><a href="#aat-metadata-convention:963dab0feb8b0e7eec9976aa902a19d8">AAT Metadata Convention</a>
+<ul>
+<li><a href="#origin-of-the-convention:963dab0feb8b0e7eec9976aa902a19d8">Origin of the Convention</a></li>
+<li><a href="#purpose-of-the-convention:963dab0feb8b0e7eec9976aa902a19d8">Purpose of the Convention</a></li>
+</ul></li>
+<li><a href="#other-resources:963dab0feb8b0e7eec9976aa902a19d8">Other Resources</a>
+<ul>
+<li><a href="#ioos-biology-data-projects:963dab0feb8b0e7eec9976aa902a19d8">IOOS Biology Data projects</a></li>
+<li><a href="#post-and-relevant-otn-data-repository:963dab0feb8b0e7eec9976aa902a19d8">POST and relevant OTN Data repository</a></li>
+<li><a href="#iso-dataset-metadata-the-19115-related-family:963dab0feb8b0e7eec9976aa902a19d8">ISO Dataset metadata (the 19115-related family)</a></li>
+<li><a href="#data-services-used-by-animal-acoustic-telemetry-groups:963dab0feb8b0e7eec9976aa902a19d8">Data Services used by animal acoustic telemetry groups</a></li>
+<li><a href="#other-relevant-systems:963dab0feb8b0e7eec9976aa902a19d8">Other relevant systems</a></li>
+<li><a href="#miscellaneous:963dab0feb8b0e7eec9976aa902a19d8">Miscellaneous</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+  
+
+<p><em>As part of the <a href="http://www.ioos.noaa.gov/observing/animal_telemetry/welcome.html">IOOS Animal Telemetry Network</a> efforts, in 2012-2013 IOOS supported a community needs assessment and data-access standards and technology development project for animal acoustic telemetry (AAT)  data. The AAT project was co-led by IOOS, NANOOS (the IOOS Regional Association for the Pacific Northwest), the Pacific Ocean Shelf Tracking Project (POST, which is no longer in operation), and the Ocean Tracking Network (OTN).</em></p>
+
+<p>&nbsp; <br>
+&nbsp; <br></p>
+
+<h1 id="introduction-and-objectives:963dab0feb8b0e7eec9976aa902a19d8">Introduction and Objectives</h1>
+
+<p>The <em>primary outcomes</em> were the development of data exchange standards and best-practice data delivery systems that are now being implemented at a wider scale by OTN to provide access to their <a href="http://members.oceantrack.org/data/discovery/NEPACIFIC.htm">OTN Northeast Pacific data node</a>, which includes POST data.</p>
+
+<p>This project has built on existing <a href="http://www.ioos.noaa.gov/data/welcome.html">IOOS DMAC guidance</a> and activities regarding biological and broader oceanographic data access.</p>
+
+<h1 id="principal-project-stakeholders-and-other-partners:963dab0feb8b0e7eec9976aa902a19d8">Principal Project Stakeholders and Other Partners</h1>
+
+<ul>
+<li><a href="http://www.ioos.noaa.gov">U.S. Integrated Ocean Observing System (U.S. IOOS)</a></li>
+<li><a href="http://www.nanoos.org">Pacific Northwest Association of Networked Ocean Observing Systems (NANOOS)</a></li>
+<li><a href="http://oceantrackingnetwork.org">Ocean Tracking Network (OTN)</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Pacific_Ocean_Shelf_Tracking_Project">Pacific Ocean Shelf Tracking Project (POST)</a>, no longer in operation</li>
+</ul>
+
+<p>Although the AAT project focused on the Pacific NW for needs assessments and data testing, it brought together not only regional partners such as the <a href="http://www.nwfsc.noaa.gov">NOAA Northwest Fisheries Center</a> and the <a href="http://hydra3.sound-data.com/about/">Hydra system</a>, but also national, Canadian and Australian collaborators.</p>
+
+<h1 id="project-documentation-and-reports:963dab0feb8b0e7eec9976aa902a19d8">Project Documentation and Reports</h1>
+
+<ul>
+<li><a href="http://habu.apl.washington.edu/mayorga/aat/Animal%20Acoustic%20Telemetry%20Obs_SOW.pdf">Statement of Work</a></li>
+<li><a href="http://habu.apl.washington.edu/mayorga/aat/POST_DataSystemDescription_DRAFT1.0.pdf">POST Data System Description</a></li>
+<li>Customer Requirements Assessment
+
+<ul>
+<li><a href="http://habu.apl.washington.edu/mayorga/aat/AAT_CustomerRequirementsQuestionnaire.pdf">Survey Questionnaire</a></li>
+<li><a href="http://habu.apl.washington.edu/mayorga/aat/AAT_CustomerRequirements_2012Sep4.pdf">Survey results and requirements synthesis</a>. This document includes a brief comparison of some existing systems.</li>
+</ul></li>
+<li><a href="http://ioostech.googlecode.com/files/AAT%20Metadata%20Convention%20v1.2.pdf">Content Standard: A metadata convention for animal acoustic telemetry data (document and tables)</a></li>
+<li><a href="http://habu.apl.washington.edu/mayorga/aat/AAT_DataSystemArchitectureImplementationPlan_FINAL.pdf">Data System Architecture Implementation Plan</a>
+
+<ul>
+<li><a href="http://habu.apl.washington.edu/mayorga/aat/Emilio_Presentation_AATworkshop_2013Jun13.pdf">Presentation by Emilio Mayorga at the Final AAT meeting, June 2013</a></li>
+</ul></li>
+</ul>
+
+<h1 id="project-data-services:963dab0feb8b0e7eec9976aa902a19d8">Project Data Services</h1>
+
+<ul>
+<li>Data Services being implemented by this project are based on <a href="http://coastwatch.pfeg.noaa.gov/erddap/index.html">ERDDAP</a> and <a href="http://geoserver.org">GeoServer</a>. Configuration files and instructions to set up ERDDAP and GeoServer instances for AAT data will be provided at the end of the project.</li>
+<li>A collection of Python data access and visualization scripts that illustrated these services are <a href="https://www.mygists.info/emiliom/tags/animalacoustictelem">accessible as IPython notebooks</a>. Here are two that access data from ERDDAP: <a href="http://nbviewer.ipython.org/6767422">Example 1</a> and <a href="http://nbviewer.ipython.org/6767450">Example 2</a>.</li>
+<li>Dataset ISO Metadata from ERDDAP, with experimental, partial XSL style sheet
+
+<ul>
+<li><a href="http://habu.apl.washington.edu/mayorga/aat/ISOMetadataFinalExamplePackage/xslt_client.html">Live-rendering (as HTML) example, in javascript</a></li>
+<li><a href="http://habu.apl.washington.edu/mayorga/aat/ISOMetadataFinalExamplePackage/otnnepMOSERAnTags_iso19115.xml">XML</a> and <a href="http://habu.apl.washington.edu/mayorga/aat/ISOMetadataFinalExamplePackage/OTNmetadata_Emilio.xsl">XSL</a> documents used in the example. The XML document is static and was pre-fetched from ERDDAP.</li>
+</ul></li>
+<li>AAT NANOOS PostgreSQL/PostGIS database and ERDDAP service configuration
+
+<ul>
+<li><a href="http://habu.apl.washington.edu/mayorga/aat/AAT_NANOOSConfigurations_FinalPackageDocs.pdf">Package documentation</a></li>
+<li><a href="http://habu.apl.washington.edu/mayorga/aat/AAT_NANOOSpg2erddap_exchange.zip">Zip file with documentation, code, and configuration files</a></li>
+</ul></li>
+<li><a href="http://habu.apl.washington.edu/mayorga/aat/AAT_ERDDAP_datasets_listing_and_properties.xls">AAT_ERDDAP_datasets_listing_and_properties.xls</a></li>
+<li><a href="http://habu.apl.washington.edu/mayorga/aat/ERDDAPDatasetMetadata-UseAndStatus-FINAL.pdf">ERDDAP global attributes: Dataset &amp; Discovery Metadata</a></li>
+<li>QGIS project file</li>
+<li>GeoServer GetCapabilities XML documents (static, pre-generated): <a href="http://habu.apl.washington.edu/mayorga/aat/geoserver-otnnep-WMS-GetCapabilities.xml">WMS</a> &amp; <a href="http://habu.apl.washington.edu/mayorga/aat/geoserver-otnnep-WFS-GetCapabilities.xml">WFS</a></li>
+</ul>
+
+<blockquote>
+<p><em><strong>NOTE:</strong> Other documents and configuration files that becomes available may be referenced here.</em></p>
+</blockquote>
+
+<h1 id="aat-metadata-convention:963dab0feb8b0e7eec9976aa902a19d8">AAT Metadata Convention</h1>
+
+<h2 id="origin-of-the-convention:963dab0feb8b0e7eec9976aa902a19d8">Origin of the Convention</h2>
+
+<p>The AAT Metadata Convention is based on data input forms from Pacific Ocean Shelf Tracking (POST), Ocean Tracking Network (OTN), Great Lakes Acoustic Telemetry Observation System (GLATOS), HYDRA, and The Integrated Marine Observing System (IMOS, the Australian Animal Tagging and Monitoring System (AATAMS), with additional feedback from other individual researchers and database operators such as Tagging Of Pacific Predators (TOPP) and Kintama Research.</p>
+
+<h2 id="purpose-of-the-convention:963dab0feb8b0e7eec9976aa902a19d8">Purpose of the Convention</h2>
+
+<p>The purpose of the <a href="http://ioostech.googlecode.com/files/AAT%20Metadata%20Convention%20v1.2.pdf">AAT Metadata Convention (pdf)</a> is to ensure that:
+  * Enough information is transmitted to make data understandable (hence “required” fields)
+  * The origin of the data is clear, and credit (attribution) is maintained
+  * The receiving system can interpret the transmitted data without human intervention, including if necessary how flat files can be reassembled into a structure such as linked database tables.</p>
+
+<p>The <a href="http://mmisw.org/ont/ioos/animal_acoustic_telemetry">vocabulary defined by the AAT Metadata Convention</a> is hosted on the <a href="http://mmisw.org/ont/ioos/">IOOS MMI ontological repository</a>. Individual terms may be referenced from it via MMI URL&rsquo;s, such as <a href="http://mmisw.org/ont/ioos/animal_acoustic_telemetry/animal_origin">http://mmisw.org/ont/ioos/animal_acoustic_telemetry/animal_origin</a></p>
+
+<h1 id="other-resources:963dab0feb8b0e7eec9976aa902a19d8">Other Resources</h1>
+
+<h2 id="ioos-biology-data-projects:963dab0feb8b0e7eec9976aa902a19d8">IOOS Biology Data projects</h2>
+
+<ul>
+<li><a href="http://www.ioos.noaa.gov/dmac/biology/welcome.html">http://www.ioos.noaa.gov/dmac/biology/welcome.html</a></li>
+<li><a href="http://www.ioos.noaa.gov/observing/animal_telemetry/welcome.html">http://www.ioos.noaa.gov/observing/animal_telemetry/welcome.html</a></li>
+<li><a href="http://oceanservice.noaa.gov/podcast/p0413.html#dd46">NOAA National Ocean Service Podcast (April 2013): Today on Diving Deeper, we explore the world of animal tagging with Zdenka Willis from the U.S. Integrated Ocean Observing System.</a></li>
+</ul>
+
+<h2 id="post-and-relevant-otn-data-repository:963dab0feb8b0e7eec9976aa902a19d8">POST and relevant OTN Data repository</h2>
+
+<ul>
+<li><a href="http://members.oceantrack.org/data/discovery/NEPACIFIC.htm">Ocean Tracking Network NE PACIFIC Ocean Data Series</a></li>
+</ul>
+
+<h2 id="iso-dataset-metadata-the-19115-related-family:963dab0feb8b0e7eec9976aa902a19d8">ISO Dataset metadata (the 19115-related family)</h2>
+
+<p>The NOAA Geo-IDE site has a nice <a href="https://geo-ide.noaa.gov/wiki/index.php?title=ISO_FAQ#What_are_all_of_these_numbers.3F">summary</a> of the differences between the three inter-related ISO metadata standards 19139, 19115 and 19115-2. But it doesn&rsquo;t address the <em><strong>&ldquo;Marine Community Profile (MCP) of ISO 19115&rdquo;</strong></em>. Here&rsquo;s a summary of the 3 ISO standards and one community profile:</p>
+
+<ul>
+<li><strong>ISO 19115</strong> is <a href="http://www.fgdc.gov/metadata/geospatial-metadata-standards">the base ISO metadata standard for the description of geographic information and services</a> (expected to be replaced by ISO 19115-1:2014 - Geographic Information – Metadata – Part 1: Fundamentals)</li>
+<li><strong>ISO 19139</strong> <a href="http://www.fgdc.gov/metadata/geospatial-metadata-standards">defines an XML document that specifies the format and general content of the metadata record for ISO 19115.</a> So, 19115 is the content model, 19139 is the packaging.</li>
+<li><strong>ISO 19115-2</strong> has emerged in IOOS, oceanographic and meteorological circles as the ISO standard of choice for environmental datasets. <a href="https://geo-ide.noaa.gov/wiki/index.php?title=ISO_FAQ#What_are_all_of_these_numbers.3F">&ldquo;Unfortunately, the name of 19115-2 is a bit misleading. It is essentially an extension of 19115 that adds information about missions, platforms and sensors, along with a few other things. Most environmental observations involve sensors, so 19115-2 is probably the right standard to use for most environmental datasets, not just imagery or gridded data.&rdquo;</a>. <em>ERDDAP uses ISO 19115-2 as its ISO dataset metadata standard.</em></li>
+<li>The <strong>Marine Community Profile (MCP) of ISO 19115</strong> was defined by the Australian Ocean Data Centre around 2008. MCP <a href="http://www.aodc.org.au/index.php?id=37">&ldquo;supports the documentation and discovery of marine spatial datasets and forms the foundation of the Marine Catalogue. The MCP has been developed in accordance with the rules established by the International Standard ISO 19115 Geographic information - Metadata. The MCP is a subset of the standard and includes all ISO 19115 core metadata elements. In addition, the MCP has defined supplementary elements, codelists and controlled vocabularies to assist in the description of marine resources.&rdquo;</a>. <em>OTN is using the MCP.</em></li>
+</ul>
+
+<h2 id="data-services-used-by-animal-acoustic-telemetry-groups:963dab0feb8b0e7eec9976aa902a19d8">Data Services used by animal acoustic telemetry groups</h2>
+
+<ul>
+<li><a href="http://oceantrackingnetwork.org/">OTN</a>: Geoserver, OGC WMS, KML</li>
+</ul>
+
+<h2 id="other-relevant-systems:963dab0feb8b0e7eec9976aa902a19d8">Other relevant systems</h2>
+
+<ul>
+<li><a href="http://hydra3.sound-data.com">http://hydra3.sound-data.com</a></li>
+<li><a href="http://data.glos.us/glatos">http://data.glos.us/glatos</a></li>
+<li><a href="http://aatams.emii.org.au/aatams/">http://aatams.emii.org.au/aatams/</a></li>
+</ul>
+
+<h2 id="miscellaneous:963dab0feb8b0e7eec9976aa902a19d8">Miscellaneous</h2>
+
+<ul>
+<li><a href="http://coastwatch.pfel.noaa.gov/xtracto/">Xtractomatic scripts for R and Matlab</a>, written by <a href="dave.foley@noaa.gov">Dave Foley</a>: the scripts make it easy to subset and extract from a remote server a satellite and other physical oceanography data (e.g., sea surface temperature, chlorophyll a) related to each point of an animal&rsquo;s track.</li>
+<li><a href="https://gist.github.com/rsignell-usgs">Examples of IPython notebook</a>, put together by Rich Signell. Many of them focus on accessing netCDF/OPeNDAP datasets.</li>
+</ul>
+
+</div>
+
+
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+  </body>
+</html>
+
