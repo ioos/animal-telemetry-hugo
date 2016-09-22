@@ -1,0 +1,2620 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile"> 
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>
+    
+      Data Exchange Standard for Acoustic, Archival and Satellite Tags, Version 1.0 &middot; National Animal Telemetry Network
+    
+  </title>
+
+  
+  <link rel="stylesheet" href="http://ioos.github.io/animal-telemetry/css/poole.css">
+  <link rel="stylesheet" href="http://ioos.github.io/animal-telemetry/css/syntax.css">
+  <link rel="stylesheet" href="http://ioos.github.io/animal-telemetry/css/lanyon.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://ioos.github.io/animal-telemetry/assets/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="http://ioos.github.io/animal-telemetry/assets/favicon.ico">
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://ioos.github.io/animal-telemetry/atom.xml">
+</head>
+
+
+  <body>
+
+    
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p align="center">&middot; <a href="http://ioos.github.io/" target="_blank">IOOS GitHub Pages</a> &middot; <br>
+	a collection of IOOS documentation and software</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item " href="http://ioos.github.io/animal-telemetry/">Home</a>
+
+
+  <div class="sidebar-item">
+    <p>Documents</p>
+  </div>
+
+<p style="text-align:right"> 
+    
+    
+      
+        <a class="sidebar-nav-item-list " href="http://ioos.github.io/animal-telemetry/about/">ABOUT: National Animal Telemetry Network</a>
+      
+    
+      
+        <a class="sidebar-nav-item-list " href="http://ioos.github.io/animal-telemetry/aat_data_ioostech_wiki/">IOOS Animal Acoustic Telemetry (AAT) Data Project: Improving Access to AAT Observations</a>
+      
+    
+      
+        <a class="sidebar-nav-item-list " href="http://ioos.github.io/animal-telemetry/animal-telemetry-plan/">Strategic Plan And Recommendations for a National ATN through U.S. IOOS</a>
+      
+    
+      
+        <a class="sidebar-nav-item-list  active " href="http://ioos.github.io/animal-telemetry/acoustic_tags_standard/">Data Exchange Standard for Acoustic, Archival and Satellite Tags, Version 1.0</a>
+      
+    
+</p>
+<p style="text-align:right">
+      
+</p>
+
+    <a class="sidebar-nav-item" href="https://github.com/ioos/animal-telemetry">GitHub repository <br> (currently on 'master')</a>
+    <a class="sidebar-nav-item" href="https://github.com/ioos/animal-telemetry/archive/master.zip">Download repository</a>
+
+
+	</nav>
+
+  <div class="sidebar-item">
+    <span>&copy; 2014 U.S. IOOS. Rights reserved</span>
+  </div>
+</div>
+
+
+    
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h2 class="masthead-title">
+		  <a href="http://ioos.github.io/animal-telemetry/" title="Home"> National Animal Telemetry Network &middot; 
+		  <small>Meeting Nation&#39;s Needs for Biological and Environmental Monitoring</small>
+		  <img src="http://ioos.github.io/animal-telemetry/images/ioos_blue2.png" alt="Smiley face" align="right" /></a>
+		  </h2>
+        </div>
+      </div>
+
+      <div class="container content">
+
+
+<div class="post">
+  <h1 class="post-title">Data Exchange Standard for Acoustic, Archival and Satellite Tags, Version 1.0</h1>
+    <div id="toc" class="well col-md-4 col-sm-6">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-database-schema-design:2fa0318a7a498a0748e7b453e0cf94f2">1. Database schema design</a>
+<ul>
+<li><a href="#1-1-metadata-tables:2fa0318a7a498a0748e7b453e0cf94f2">1.1 Metadata tables</a></li>
+<li><a href="#1-2-monitoring-tables:2fa0318a7a498a0748e7b453e0cf94f2">1.2 Monitoring tables</a></li>
+<li><a href="#1-3-data-tables:2fa0318a7a498a0748e7b453e0cf94f2">1.3 Data tables</a></li>
+</ul></li>
+<li><a href="#2-discussion:2fa0318a7a498a0748e7b453e0cf94f2">2. Discussion</a>
+<ul>
+<li><a href="#2-1-infrastructure:2fa0318a7a498a0748e7b453e0cf94f2">2.1 Infrastructure</a></li>
+<li><a href="#2-2-data-flow:2fa0318a7a498a0748e7b453e0cf94f2">2.2 Data flow</a>
+<ul>
+<li><a href="#metadata-entry:2fa0318a7a498a0748e7b453e0cf94f2"><em>Metadata entry</em></a></li>
+<li><a href="#data-upload:2fa0318a7a498a0748e7b453e0cf94f2"><em>Data upload</em></a></li>
+<li><a href="#data-download:2fa0318a7a498a0748e7b453e0cf94f2"><em>Data download</em></a></li>
+</ul></li>
+</ul></li>
+<li><a href="#3-database-schema-tables-and-relationships:2fa0318a7a498a0748e7b453e0cf94f2">3. Database schema: tables and relationships</a>
+<ul>
+<li><a href="#3-1-metadata-tables:2fa0318a7a498a0748e7b453e0cf94f2">3.1 Metadata tables</a>
+<ul>
+<li><a href="#device:2fa0318a7a498a0748e7b453e0cf94f2"><em>Device</em></a></li>
+<li><a href="#instruments:2fa0318a7a498a0748e7b453e0cf94f2"><em>Instruments</em></a></li>
+<li><a href="#installation-station:2fa0318a7a498a0748e7b453e0cf94f2"><em>Installation station</em></a></li>
+<li><a href="#receiver-deployment-and-recovery:2fa0318a7a498a0748e7b453e0cf94f2"><em>Receiver deployment and recovery</em></a></li>
+<li><a href="#surgery:2fa0318a7a498a0748e7b453e0cf94f2"><em>Surgery</em></a></li>
+<li><a href="#animal-release-and-recovery:2fa0318a7a498a0748e7b453e0cf94f2"><em>Animal release and recovery</em></a></li>
+<li><a href="#animal:2fa0318a7a498a0748e7b453e0cf94f2"><em>Animal</em></a></li>
+<li><a href="#species:2fa0318a7a498a0748e7b453e0cf94f2"><em>Species</em></a></li>
+<li><a href="#animal-measurement:2fa0318a7a498a0748e7b453e0cf94f2"><em>Animal measurement</em></a></li>
+<li><a href="#project:2fa0318a7a498a0748e7b453e0cf94f2"><em>Project</em></a></li>
+<li><a href="#data-center:2fa0318a7a498a0748e7b453e0cf94f2"><em>Data center</em></a></li>
+<li><a href="#users:2fa0318a7a498a0748e7b453e0cf94f2"><em>Users</em></a></li>
+<li><a href="#project-role:2fa0318a7a498a0748e7b453e0cf94f2"><em>Project role</em></a></li>
+</ul></li>
+<li><a href="#3-2-monitoring-tables:2fa0318a7a498a0748e7b453e0cf94f2">3.2 Monitoring tables</a>
+<ul>
+<li><a href="#activity-log:2fa0318a7a498a0748e7b453e0cf94f2"><em>Activity log</em></a></li>
+<li><a href="#uploaded-files:2fa0318a7a498a0748e7b453e0cf94f2"><em>Uploaded files</em></a></li>
+</ul></li>
+<li><a href="#3-3-data-tables:2fa0318a7a498a0748e7b453e0cf94f2">3.3 Data tables</a>
+<ul>
+<li><a href="#gps-locations:2fa0318a7a498a0748e7b453e0cf94f2"><em>GPS locations</em></a></li>
+<li><a href="#argos-locations:2fa0318a7a498a0748e7b453e0cf94f2"><em>Argos locations</em></a></li>
+<li><a href="#gls-locations:2fa0318a7a498a0748e7b453e0cf94f2"><em>GLS locations</em></a></li>
+<li><a href="#acoustic-detections:2fa0318a7a498a0748e7b453e0cf94f2"><em>Acoustic detections</em></a></li>
+</ul></li>
+</ul></li>
+<li><a href="#4-reference-information:2fa0318a7a498a0748e7b453e0cf94f2">4. Reference Information</a>
+<ul>
+<li><a href="#4-1-contribution:2fa0318a7a498a0748e7b453e0cf94f2">4.1 Contribution</a></li>
+<li><a href="#4-2-citation-sources:2fa0318a7a498a0748e7b453e0cf94f2">4.2 Citation sources</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+  
+
+<p><em>The purpose of this document is to describe the data and metadata template to use to share acoustic, archival and satellite telemetry data between organizations. The need for such a standard has become obvious due to a growing number of projects (e.g. TOPP, POST, AATAMS) collecting important volumes of data (Kranstauber et al. 2011, Campbell et al. 2015, Dwyer et al. 2015, Campbell et al. 2016), which are more likely to result in the publication of articles in high impact factor journals (Block et al. 2011, Hussey et al. 2015, Kays et al. 2015).</em></p>
+
+<p><em>The standard proposed hereafter is primarily based on the metadata convention developed for acoustic telemetry projects (Payne et al. 2013) and the structure of the IMOS Animal Tracking acoustic database (IMOS Animal Tracking 2016), with additional metadata information gathered from various projects (e.g. OTN, TOPP, Movebank) (Kranstauber et al. 2011). The present convention follows the nomenclature used in Payne et al. (2013) with database fields flagged as ‘required’ or ‘optional’ for users to get a minimum amount of viable information for each dataset. Constraints and relationships between database tables highlight how information from different tables can be respectively kept consistent and joined together (Figure 1). For additional database related logic, refer to Payne et al. (2013). The proposed tables were designed using the PostgreSQL database language and the PostGIS extension to convert longitude/latitude coordinates into geometries. All PostgreSQL queries along with other documents relevant to this standard are publicly available at <a href="https://github.com/xhoenner/biologging_data-sharing">https://github.com/xhoenner/biologging_data-sharing</a>.</em></p>
+
+<p>&nbsp; <br></p>
+
+<hr />
+
+<h1 id="1-database-schema-design:2fa0318a7a498a0748e7b453e0cf94f2">1. Database schema design</h1>
+
+<p>All metadata related to individual tag or receiver deployments (the equivalent of global attributes for netCDF files) are stored in 13 different tables detailed below and in <a href="#database-schema">Section 3</a>. In contrast, metadata for each variable in a dataset, commonly referred to as variable attributes in the netCDF format, are not included in the current standard but may be added in the future if required. The present data exchange standard also includes a database structure to hold animal location data estimated from Argos, Fastloc GPS, light levels, and acoustic receivers. These location datasets are stored in four distinct tables because of different diagnostic information inherent to each technology. Furthermore two monitoring tables store information about metadata editing and data file uploads.</p>
+
+<p>Detailed field names and meanings for each database table are provided in <a href="#database-schema">Section 3</a>. Each table has (1) a primary key, which constrains some fields to have a unique combination of values, and (2) foreign keys, which explicitly link tables so that information from different tables can be extracted in a flat CSV table format. These foreign keys also prevent accidental deletion and erroneous insertion of data. Database views can then be built to join information between tables and subsequently be used by a web-based application.</p>
+
+<h2 id="1-1-metadata-tables:2fa0318a7a498a0748e7b453e0cf94f2">1.1 Metadata tables</h2>
+
+<ol>
+<li><p><a href="#device"><strong>Device</strong></a>: information about tags including manufacturer name and model.</p></li>
+
+<li><p><a href="#instruments"><strong>Instrument</strong></a>: additional information about each tag, <em>e.g.</em> firmware/software version, tag configuration, on board sensors.</p></li>
+
+<li><p><a href="#installation-station"><strong>Installation station</strong></a>: information about acoustic installations and stations within installations.</p></li>
+
+<li><p><a href="#receiver-deployment-recovery"><strong>Receiver deployment and recovery</strong></a>: information about     acoustic receiver deployments and recoveries.</p></li>
+
+<li><p><a href="#surgery"><strong>Surgery</strong></a>: specifies which tag was deployed as part of an animal release and how. This is a mapping table between the <code>device</code> and <code>animal_release_recovery</code> tables allowing multiple tag deployments.</p></li>
+
+<li><p><a href="#animal-release-recovery"><strong>Animal release and recovery</strong></a>: information about animal capture, release, and potential recovery.</p></li>
+
+<li><p><a href="#animal"><strong>Animal</strong></a>: information about each animal equipped with tags including sex, species, and age.</p></li>
+
+<li><p><a href="#species"><strong>Species</strong></a>: read-only table providing a list of species for users to choose from. This list should eventually follow a comprehensive standard approved upon by the tagging community (<em>e.g.</em> <a href="http://www.marinespecies.org/">WoRMS for marine species</a>).</p></li>
+
+<li><p><a href="#animal-measurement"><strong>Animal measurement</strong></a>: lists all the morphological measurements taken for each tagged animal.</p></li>
+
+<li><p><a href="#project"><strong>Project</strong></a>: information on tagging projects (<em>e.g.</em> abstract, distribution statement), and which data center hosts their data (if any).</p></li>
+
+<li><p><a href="#data-center"><strong>Data center</strong></a>: name and attributes of each data center.</p></li>
+
+<li><p><a href="#user"><strong>Users</strong></a>: names and contact details of users.</p></li>
+
+<li><p><a href="#projectp-role"><strong>Project role</strong></a>: mapping table between the project and users tables.</p></li>
+</ol>
+
+<h2 id="1-2-monitoring-tables:2fa0318a7a498a0748e7b453e0cf94f2">1.2 Monitoring tables</h2>
+
+<ol>
+<li><p><a href="#activity-log"><strong>Activity log</strong></a>: lists modifications made by users through the GUI to metadata tables.</p></li>
+
+<li><p><a href="#uploaded-files"><strong>Uploaded files</strong></a>: lists all data files uploaded by users.</p></li>
+</ol>
+
+<h2 id="1-3-data-tables:2fa0318a7a498a0748e7b453e0cf94f2">1.3 Data tables</h2>
+
+<ol>
+<li><p><a href="#gps-locations"><strong>GPS locations</strong></a>: animal location data and diagnostic information obtained using the Fastloc GPS technology.</p></li>
+
+<li><p><a href="#argos-locations"><strong>Argos locations</strong></a>: animal location data and diagnostic information obtained using the Argos technology.</p></li>
+
+<li><p><a href="#gls-locations"><strong>GLS locations</strong></a>: animal location data obtained using light level sensor tags.</p></li>
+
+<li><p><a href="#acoustic-detections"><strong>Acoustic detections</strong></a>: animal location data and sensor values obtained from acoustic receivers.</p></li>
+</ol>
+
+<p><br><br></p>
+
+<hr />
+
+<h1 id="2-discussion:2fa0318a7a498a0748e7b453e0cf94f2">2. Discussion</h1>
+
+<h2 id="2-1-infrastructure:2fa0318a7a498a0748e7b453e0cf94f2">2.1 Infrastructure</h2>
+
+<p>We propose that the relational database tables described above be supported by an online, web-based interface for users to enter/edit metadata, upload data, and search, filter and download data. These three use cases should dictate the overall design of the graphical user interface (GUI) to make it as intuitive as possible to users.
+To avoid hosting data without a minimum amount of metadata, an error should be generated when uploading data files for tags that are not registered in the database with the exception of acoustic data for which tags detected are not necessarily owned by receiver owners. A key requirement will therefore be for users to register their tags using the exact same name as in their data files so that observations can be internally joined with tag and deployment metadata.
+While duplicate observations can be flagged directly within the database using PostgreSQL functions, all data files for upload via the GUI (<em>e.g.</em> GPS locations, acoustic detections) will have to follow clearly defined conventions. Tools may therefore have to be developed to convert data files provided by each manufacturer into the required format and checkers should be set up within the web application so that bad and uncompliant data does not end up in the database. Hosting additional data products (<em>e.g.</em> CTD or TDR data, receiver events) is consequently feasible but will require additional work on conversion tools and compliance checkers.</p>
+
+<p><br></p>
+
+<h2 id="2-2-data-flow:2fa0318a7a498a0748e7b453e0cf94f2">2.2 Data flow</h2>
+
+<p>The following section explains the proposed flow of data in the system covering the three use cases outlined above: <em>i.e.</em> metadata editing, data upload, data download. Unregistered users will only have access to the latter section while registered users (<em>e.g.</em> system administrator, principal investigator) who are member of a given project will also be able to enter metadata and upload data files. A security logic restricting access to sensitive data (<em>e.g.</em> PhD projects, species at risk of being targeted for exploitation) could be implemented similarly to the one in place in the <a href="https://github.com/aodn/aatams">IMOS Animal Tracking web application</a>. Doing so will nonetheless add substantial complexity to the online infrastructure code and hence increase its maintenance cost greatly.</p>
+
+<h3 id="metadata-entry:2fa0318a7a498a0748e7b453e0cf94f2"><em>Metadata entry</em></h3>
+
+<p>This menu option will only be available to registered users who are members of a project. This menu consists of a logical sequence of questions:</p>
+
+<ol>
+<li><p><em>Does your project exist in the database?</em></p>
+
+<ul>
+<li><p><strong>No -&gt;</strong> user is prompted to enter details about their project.</p></li>
+
+<li><p><strong>Yes -&gt;</strong> user can edit project details and/or proceed to Step 2.</p></li>
+</ul></li>
+
+<li><p><em>Does your device exist in the database?</em></p>
+
+<ul>
+<li><p><strong>No -&gt;</strong> user is prompted to enter details about their device and instruments.</p></li>
+
+<li><p><strong>Yes -&gt;</strong> user can edit device and instruments details and/or proceed to Step 3 if the device has been deployed or recovered.</p></li>
+</ul></li>
+
+<li><p><em>Does a deployment/recovery event exist for this device in the database?</em></p>
+
+<ul>
+<li><p><strong>No -&gt;</strong> user is prompted to enter details about tag deployment and/or recovery on an animal, animal information (species, measurements) <strong>OR</strong> receiver deployment and/or recovery on an acoustic installation/station.</p></li>
+
+<li><p><strong>Yes -&gt;</strong> user can edit tag or receiver deployment/recovery details and/or proceed to Step 4.</p></li>
+</ul></li>
+
+<li><p><em>What do you want to do next?</em></p>
+
+<ul>
+<li><p>Register a new tag in the database proceed to Step 2.</p></li>
+
+<li><p>Add other deployment/recovery information proceed to Step 3.</p></li>
+
+<li><p>Upload data files see next section.</p></li>
+</ul></li>
+</ol>
+
+<h3 id="data-upload:2fa0318a7a498a0748e7b453e0cf94f2"><em>Data upload</em></h3>
+
+<p>This menu option will only be available to registered users who are members of a project.</p>
+
+<ol>
+<li><p>Users will first be asked which type of data file they would like to upload and be reminded of (a) the expected file format convention and (b) that all tag IDs in their data file must have a matching record in the database (except in the case of acoustic data files, see second paragraph of the Discussion).</p></li>
+
+<li><p>Users will then be able to upload their data file. A checker will verify that the file format complies with the expected convention and that all tag IDs in the data file are found under the <code>device_name</code> field in the <code>device</code> table.</p></li>
+
+<li><p>Three outcomes are then possible:</p>
+
+<ul>
+<li><p>Data file successfully passed all tests.</p></li>
+
+<li><p>One or more tests of the data file checker have failed; error messages should be shown to users accordingly.</p></li>
+
+<li><p>Some tag IDs (or receiver IDs) are not found under the <code>device_name</code> field in the <code>device</code> table: users should be given a list of unknown tag IDs and be prompted to enter tag and deployment metadata for those tags.</p></li>
+</ul></li>
+</ol>
+
+<h3 id="data-download:2fa0318a7a498a0748e7b453e0cf94f2"><em>Data download</em></h3>
+
+<p>This menu option will be available to unregistered users but data availability may vary depending on whether we choose to implement security constraints. Users should be able to subset and download data using the following filters:</p>
+
+<ul>
+<li><p>Data type, <em>e.g.</em> GPS location, acoustic detections</p></li>
+
+<li><p>Date start and end</p></li>
+
+<li><p>Geographic bounding box</p></li>
+
+<li><p>Species</p></li>
+
+<li><p>Tag IDs</p></li>
+
+<li><p>Project name</p></li>
+</ul>
+
+<p><br></p>
+
+<hr />
+
+<p><br><a name="database-schema"></a></p>
+
+<h1 id="3-database-schema-tables-and-relationships:2fa0318a7a498a0748e7b453e0cf94f2">3. Database schema: tables and relationships</h1>
+
+<!-- ![Relational_database_diagram](/images/database1.jpg) -->
+
+<p><img src="http://ioos.github.io/animal-telemetry/images/database1.jpg" height="600"></p>
+
+<p><a name="Fig_1"></a><em><strong>Figure 1: Database schema showing the content of each table and their relationships. Metadata, monitoring, and data tables are shown in the green, orange, and red dashed rectangle respectively. Foreign key relationships from the  <code>receiver_deployment_recovery</code> and <code>animal_release_recovery</code> to the <code>users</code> table are not represented to improve readability.</strong></em></p>
+
+<p><br><br></p>
+
+<h2 id="3-1-metadata-tables:2fa0318a7a498a0748e7b453e0cf94f2">3.1 Metadata tables</h2>
+
+<p><a name="device"></a></p>
+
+<h3 id="device:2fa0318a7a498a0748e7b453e0cf94f2"><em>Device</em></h3>
+
+<p><strong>Provides information about tags and acoustic receivers including manufacturer name and model</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">Device ID (unique).</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">device_name</td>
+<td align="center">Device name for each project (<em>e.g.</em> <strong>ct111-030-13</strong>). <br><br>For acoustic tags, the <em><strong><code>device_name</code></strong></em> value should be automatically generated using values for the <em><strong><code>code_map</code></strong></em> and <em><strong><code>ping_code</code></strong></em> fields below (i.e. <em><strong><code>device_name</code></strong></em> = <em><strong><code>code_map</code>-<code>ping_code</code></strong></em>). <br><br>For acoustic receivers, , the <em><strong><code>device_name</code></strong></em> value should be automatically generated using values for the <em><strong><code>model_name</code></strong></em> and <em><strong><code>serial_number</code></strong></em> fields below (i.e. <em><strong><code>device_name</code></strong></em> = <em><strong><code>model_name</code>-<code>serial_number</code></strong></em>). <br><br>The <em><strong><code>device_name</code></strong></em> value needs to match the content of the <em><strong><code>device_name</code></strong></em> field in the data tables for data to be joined to metadata.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">project_id</td>
+<td align="center">Project ID.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to project table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">device_type</td>
+<td align="center">Type of device, can only take the following values: <em><strong>archival</strong></em>, <em><strong>pop-up</strong></em>, <em><strong>satellite</strong></em>, <em><strong>acoustic tag</strong></em>, or <em><strong>acoustic receiver</strong></em></td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Controlled vocabulary implemented via a check constraint</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">manufacturer</td>
+<td align="center">Name of manufacturer.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Controlled vocabulary implemented via a check constraint</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">model_name</td>
+<td align="center">Model name.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Controlled vocabulary implemented via a check constraint</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">serial_number</td>
+<td align="center">Device serial number.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">The combination of _<strong><code>manufacturer</code>, _</strong><code>model_name</code>, and <em><strong><code>serial_number</code></strong></em> must be unique.</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">code_map</td>
+<td align="center">For acoustic tags only (<em>e.g.</em> <strong>‘A69-9002’</strong>). Additional database constraints can be generated based on this value since some code maps are pingers only and some are sensors only <a href="https://github.com/aodn/aatams/issues/240#issuecomment-214596557">https://github.com/aodn/aatams/issues/240 - issuecomment-214596557</a>.</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center">Not null if <em><strong><code>device_type</code></strong></em> = <em><strong><code>acoustic tag</code></strong></em></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">ping_code</td>
+<td align="center">For acoustic tags only.</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center">Not null if <em><strong><code>device_type</code></strong></em> = <em><strong><code>acoustic tag</code></strong></em></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">ptt</td>
+<td align="center">Platform Transmitting Terminal (PTT) number for Argos transmission. For pop-up and satellite tags only.</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center">Null if <em><strong><code>device_type</code></strong></em> = <em><strong><code>acoustic</code></strong></em> or <em><strong><code>archival</code></strong></em></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">device_wmo_ref</td>
+<td align="center">World Meteorological Organization (WMO) number allocated to this device. For pop-up and satellite tags only.</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center">Null if <em><strong><code>device_type</code></strong></em> = <em><strong><code>acoustic</code></strong></em> or <em><strong><code>archival</code></strong></em></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">infourl</td>
+<td align="center">URL to tag model specifications.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center">ERDDAP</td>
+</tr>
+</tbody>
+</table>
+
+<p><br><a name="instruments"></a></p>
+
+<h3 id="instruments:2fa0318a7a498a0748e7b453e0cf94f2"><em>Instruments</em></h3>
+
+<p><strong>Provides additional information about each tag, <em>e.g.</em> firmware/software version, tag configuration, on board sensors.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">Instrument ID (unique).</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">device_id</td>
+<td align="center">Device ID. The list of parameters below available to users through the GUI should be based on the type of device selected previously (see ‘device_type’ in the device table), e.g. if ‘device_type’ = ‘acoustic’ then only pressure, temperature, pinger, range_test can be edited.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to device table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">firmware_version</td>
+<td align="center">Version number of the firmware used to build the tag.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">software_version</td>
+<td align="center">Version number of the software used for the tag.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">configuration_parameters</td>
+<td align="center">Parameter settings used to configure the tag for deployment; could also provide users with the possibility to upload a text file of specifications.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">pressure</td>
+<td align="center">Was pressure data recorded?</td>
+<td align="center">required</td>
+<td align="center">boolean</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">temperature</td>
+<td align="center">Was temperature data recorded?</td>
+<td align="center">required</td>
+<td align="center">boolean</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">light</td>
+<td align="center">Was light data recorded?</td>
+<td align="center">required</td>
+<td align="center">boolean</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">conductivity</td>
+<td align="center">Was conductivity data recorded?</td>
+<td align="center">required</td>
+<td align="center">boolean</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">fluorescence</td>
+<td align="center">Was fluorescence data recorded?</td>
+<td align="center">required</td>
+<td align="center">boolean</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">accelerometer_3d</td>
+<td align="center">Was speed data recorded?</td>
+<td align="center">required</td>
+<td align="center">boolean</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">magnetometer_3d</td>
+<td align="center">Was orientation data recorded?</td>
+<td align="center">required</td>
+<td align="center">boolean</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">stomach_temperature</td>
+<td align="center">Was stomach temperature data recorded?</td>
+<td align="center">required</td>
+<td align="center">boolean</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">argos_location<br><br>gps_location<br><br>geolocation</td>
+<td align="center">Which type(s) of location estimates was provided by the tag?</td>
+<td align="center">required</td>
+<td align="center">boolean</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">geolocation_data_processing</td>
+<td align="center">If geolocation = TRUE then specify which algorithm was used to process GLS raw data</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Not null if device.device_type = ‘archival’</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">pinger</td>
+<td align="center">Was this device a pinger tag?</td>
+<td align="center">required</td>
+<td align="center">boolean</td>
+<td align="center">Not null if device.device_type = ‘archival’</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">range_test</td>
+<td align="center">Was this device a range test tag?</td>
+<td align="center">required</td>
+<td align="center">boolean</td>
+<td align="center">Not null if device.device_type = ‘archival’</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">intercept</td>
+<td align="center">Intercept and slope of the sensor (found in the transmitter specifications)</td>
+<td align="center">required</td>
+<td align="center">boolean</td>
+<td align="center">Not null if device.device_type = ‘acoustic tag’ and pinger = FALSE and range_test = FALSE</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">slope</td>
+<td align="center">Slope of the sensor (found in the transmitter specifications)</td>
+<td align="center">required</td>
+<td align="center">boolean</td>
+<td align="center">Not null if device.device_type = ‘acoustic tag’ and pinger = FALSE and range_test = FALSE</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">unit</td>
+<td align="center">Implement constraints based on sensor type (i.e. if temperature = true then unit = &lsquo;°C&rsquo;, pressure = true then unit = &rsquo;m&rsquo;, accelerometer then unit = &rsquo;m.s-2&rsquo;).</td>
+<td align="center">required</td>
+<td align="center">boolean</td>
+<td align="center">Not null if device.device_type = ‘acoustic tag’ and pinger = FALSE and range_test = FALSE</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<p><br><a name="installation-station"></a></p>
+
+<h3 id="installation-station:2fa0318a7a498a0748e7b453e0cf94f2"><em>Installation station</em></h3>
+
+<p><strong>Provides information about acoustic installations and stations within installations.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">Installation station ID (unique).</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">project_id</td>
+<td align="center">Project ID.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to project table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">installation_name</td>
+<td align="center">Name of acoustic installation. An installation is made of several receiving stations</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Unique constraint</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">station_name</td>
+<td align="center">Name of installation station. The same installation cannot have two stations with the same name.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">The combination of <code>installation_name</code> and <code>station_name</code> must be unique.</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">station_location</td>
+<td align="center">Longitude and latitude of each installation station, transformed into a geometry (point).</td>
+<td align="center">required</td>
+<td align="center">geometry</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<p><br><a name="receiver-deployment-recovery"></a></p>
+
+<h3 id="receiver-deployment-and-recovery:2fa0318a7a498a0748e7b453e0cf94f2"><em>Receiver deployment and recovery</em></h3>
+
+<p><strong>Provides information about acoustic receiver deployments and recoveries.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">Receiver deployment and recovery ID (unique).</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">receiver_id</td>
+<td align="center">Receiver ID.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to device table (where device_type = ‘Acoustic receiver’)</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">installation_station_id</td>
+<td align="center">Installation station ID</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to installation_station table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">bottom_depthm</td>
+<td align="center">Depth to bottom (m)</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">comments</td>
+<td align="center">Deployment comments</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">deployer_id</td>
+<td align="center">ID of the person who deployed the acoustic receiver.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to users table.</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">initialisation_datetime</td>
+<td align="center">Acoustic receiver initialisation date and time (UTC).</td>
+<td align="center">required</td>
+<td align="center">timestamp</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">deployment_datetime</td>
+<td align="center">Acoustic receiver deployment date and time (UTC).</td>
+<td align="center">required</td>
+<td align="center">timestamp</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">depth_below_surfacem</td>
+<td align="center">Depth from the surface to the receiver (m)</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">mooring_descriptor</td>
+<td align="center">Description of the type of mooring that was used</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">mooring_type</td>
+<td align="center">Fixed or floating?</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center">Controlled vocabulary implemented via a check constraint</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">receiver_orientation</td>
+<td align="center">Up, down, or sideways</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center">Controlled vocabulary implemented via a check constraint</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">deployment_location</td>
+<td align="center">Longitude and latitude of receiver deployment, transformed into a geometry (point).</td>
+<td align="center">required</td>
+<td align="center">geometry</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">recoverer_id</td>
+<td align="center">ID of the person who recovered the acoustic receiver.</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to users table.</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">recovery_datetime</td>
+<td align="center">Acoustic receiver deployment date and time (UTC).</td>
+<td align="center">optional</td>
+<td align="center">timestamp</td>
+<td align="center">If recoverer_id is not null then these three elds cannot be null. Controlled vocabulary implemented on <code>recovery_status</code> via a check constraint</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">recovery_location</td>
+<td align="center">Longitude and latitude of receiver recovery, transformed into a geometry (point).</td>
+<td align="center">optional</td>
+<td align="center">geometry</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">recovery_status</td>
+<td align="center">Retired, damaged, stolen, recovered, lost, or returned to vendor?</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<p><br><a name="surgery"></a></p>
+
+<h3 id="surgery:2fa0318a7a498a0748e7b453e0cf94f2"><em>Surgery</em></h3>
+
+<p><strong>Specifies which tag was deployed as part of an animal release and how.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">Surgery ID (unique).</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">device_id</td>
+<td align="center">Device ID.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to device table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">release_id</td>
+<td align="center">Animal release ID.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to animal_release_recovery table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">attachment_method</td>
+<td align="center">Describe how the tag was attached (e.g. glued, implant).</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Controlled vocabulary implemented via a check constraint</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">attachment_details</td>
+<td align="center">Describe tag attachment (e.g. location of tag on animal, use of anaesthetics).</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<p><br><a name="animal-release-recovery"></a></p>
+
+<h3 id="animal-release-and-recovery:2fa0318a7a498a0748e7b453e0cf94f2"><em>Animal release and recovery</em></h3>
+
+<p><strong>Provides information about animal capture, release, and potential recovery.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">Animal release and recovery ID (unique).</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">animal_id</td>
+<td align="center">Animal ID.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to animal table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">tagger_id</td>
+<td align="center">ID of the person who deployed the device on the animal.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to users table.</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">animal_capture_locality</td>
+<td align="center">Locality, State/Territory, Country of capture</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">animal_capture_location</td>
+<td align="center">Longitude and latitude of capture, transformed into a geometry (point).</td>
+<td align="center">optional</td>
+<td align="center">geometry</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">animal_capture_datetime</td>
+<td align="center">Date and time (UTC) of capture.</td>
+<td align="center">optional</td>
+<td align="center">timestamp</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">deployment_locality</td>
+<td align="center">Locality, State/Territory, Country of tag deployment</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">deployment_location</td>
+<td align="center">Longitude and latitude of tag deployment, transformed into a geometry (point).</td>
+<td align="center">required</td>
+<td align="center">geometry</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">deployment_datetime</td>
+<td align="center">Date and time (UTC) of tag deployment.</td>
+<td align="center">required</td>
+<td align="center">timestamp</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">deployment_comments</td>
+<td align="center">Describe the deployment event and whether any samples were taken during tag deployment (e.g. tissue, blubber, blood).</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">recoverer_id</td>
+<td align="center">ID of the person who recovered the device on the animal</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to users table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">recovery_locality</td>
+<td align="center">Locality, State/Territory, Country of recovery</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">recovery_location</td>
+<td align="center">Longitude and latitude of recovery, transformed into a geometry (point).</td>
+<td align="center">optional</td>
+<td align="center">geometry</td>
+<td align="center">If recoverer_id is not null then these two fields cannot be null.</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">recovery_datetime</td>
+<td align="center">Date and time (UTC) of tag recovery.</td>
+<td align="center">optional</td>
+<td align="center">timestamp</td>
+<td align="center">If recoverer_id is not null then these two fields cannot be null.</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">recovery_comments</td>
+<td align="center">Describe the recovery event (e.g. damage on tag, biofouling, tag sent back to manufacturer for refurbishing).</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<p><br><a name="animal"></a></p>
+
+<h3 id="animal:2fa0318a7a498a0748e7b453e0cf94f2"><em>Animal</em></h3>
+
+<p><strong>Provides information about each animal equipped with tags including sex, species, and age.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">Animal ID (unique).</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">unique_id</td>
+<td align="center">Unique ID for each animal (e.g. numbered tag, band, transponder)</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">species_id</td>
+<td align="center">Species ID.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to species table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">sex</td>
+<td align="center">Sex of animal.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Can only be female, male, or unknown.</td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">lifeStage</td>
+<td align="center">Animal life stage (e.g. adult, juvenile, subadult, weaner)</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Controlled vocabulary implemented via a check constraint</td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">ageUnit</td>
+<td align="center">Unit of age (e.g. days, months, years)</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center">Controlled vocabulary implemented via a check constraint</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">value</td>
+<td align="center">Age of animal</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">estimate</td>
+<td align="center">Is the age value an estimate?</td>
+<td align="center">optional</td>
+<td align="center">boolean</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">comments</td>
+<td align="center">Additional information on animal (e.g. animal origin – wild vs. hatchery, stock, injuries)</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<p><br><a name="species"></a></p>
+
+<h3 id="species:2fa0318a7a498a0748e7b453e0cf94f2"><em>Species</em></h3>
+
+<p><strong>Simplified list of species (read only). This list should eventually follow a comprehensive standard approved upon by the tagging community (<em>e.g.</em> <a href="http://www.marinespecies.org/">WoRMS for marine species</a>)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">Species ID (unique).</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">worms_aphiaID</td>
+<td align="center">WoRMS Aphia ID</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">kingdom</td>
+<td align="center">Taxonomical information for each species, see <a href="http://rs.tdwg.org/dwc/terms/index.htm#taxonindex">http://rs.tdwg.org/dwc/terms/index.htm#taxonindex</a> for more details.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">phylum</td>
+<td align="center">Taxonomical information for each species, see <a href="http://rs.tdwg.org/dwc/terms/index.htm#taxonindex">http://rs.tdwg.org/dwc/terms/index.htm#taxonindex</a> for more details.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">class_name</td>
+<td align="center">Taxonomical information for each species, see <a href="http://rs.tdwg.org/dwc/terms/index.htm#taxonindex">http://rs.tdwg.org/dwc/terms/index.htm#taxonindex</a> for more details.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">order_name</td>
+<td align="center">Taxonomical information for each species, see <a href="http://rs.tdwg.org/dwc/terms/index.htm#taxonindex">http://rs.tdwg.org/dwc/terms/index.htm#taxonindex</a> for more details.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">family</td>
+<td align="center">Taxonomical information for each species, see <a href="http://rs.tdwg.org/dwc/terms/index.htm#taxonindex">http://rs.tdwg.org/dwc/terms/index.htm#taxonindex</a> for more details.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">genus</td>
+<td align="center">Taxonomical information for each species, see <a href="http://rs.tdwg.org/dwc/terms/index.htm#taxonindex">http://rs.tdwg.org/dwc/terms/index.htm#taxonindex</a> for more details.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">subgenus</td>
+<td align="center">Taxonomical information for each species, see <a href="http://rs.tdwg.org/dwc/terms/index.htm#taxonindex">http://rs.tdwg.org/dwc/terms/index.htm#taxonindex</a> for more details.</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">specificEpithet</td>
+<td align="center">Taxonomical information for each species, see <a href="http://rs.tdwg.org/dwc/terms/index.htm#taxonindex">http://rs.tdwg.org/dwc/terms/index.htm#taxonindex</a> for more details.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">infraspecificEpithet</td>
+<td align="center">Taxonomical information for each species, see <a href="http://rs.tdwg.org/dwc/terms/index.htm#taxonindex">http://rs.tdwg.org/dwc/terms/index.htm#taxonindex</a> for more details.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">scientificName</td>
+<td align="center">Taxonomical information for each species, see <a href="http://rs.tdwg.org/dwc/terms/index.htm#taxonindex">http://rs.tdwg.org/dwc/terms/index.htm#taxonindex</a> for more details.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">acceptedNameUsage</td>
+<td align="center">Taxonomical information for each species, see <a href="http://rs.tdwg.org/dwc/terms/index.htm#taxonindex">http://rs.tdwg.org/dwc/terms/index.htm#taxonindex</a> for more details.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">vernacularName</td>
+<td align="center">Taxonomical information for each species, see <a href="http://rs.tdwg.org/dwc/terms/index.htm#taxonindex">http://rs.tdwg.org/dwc/terms/index.htm#taxonindex</a> for more details.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">scientificNameAuthorship</td>
+<td align="center">Recognised authority (author and date) for each species name, and source of this information.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">date_modified</td>
+<td align="center">Date on which each species entry was last modified.</td>
+<td align="center">required</td>
+<td align="center">timestamp</td>
+<td align="center"></td>
+<td align="center">NACDD</td>
+</tr>
+</tbody>
+</table>
+
+<p><br><a name="animal-measurement"></a></p>
+
+<h3 id="animal-measurement:2fa0318a7a498a0748e7b453e0cf94f2"><em>Animal measurement</em></h3>
+
+<p><strong>Lists all the morphological measurements taken for each tagged animal.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">Animal measurement ID (unique).</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">animal_id</td>
+<td align="center">Animal ID.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to animal table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">type</td>
+<td align="center">Type of measurement (e.g. length, weight, total length, carapace length, carapace width, fork length, width).</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Controlled vocabulary implemented via a check constraint</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">unit</td>
+<td align="center">Unit of measurement (e.g. mm, cm, m, g, kg).</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Controlled vocabulary implemented via a check constraint</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">value</td>
+<td align="center">Measurement value.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">estimate</td>
+<td align="center">Is the measurement value an estimate?</td>
+<td align="center">required</td>
+<td align="center">boolean</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">comments</td>
+<td align="center">Additional information on each measurement.</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<p><br><a name="project"></a></p>
+
+<h3 id="project:2fa0318a7a498a0748e7b453e0cf94f2"><em>Project</em></h3>
+
+<p><strong>Provides information on tagging projects, which data center hosts data, who is the principal investigator.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">Project ID (unique).</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">datacenter_id</td>
+<td align="center">ID of data center. Not a compulsory so that people who would like to contribute can do so without having their data in a data centre.</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to datacenter table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">title</td>
+<td align="center">Project name</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Unique constraint</td>
+<td align="center">NACDD</td>
+</tr>
+
+<tr>
+<td align="center">summary</td>
+<td align="center">Description of project including background, methods, and objectives.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center">NACDD</td>
+</tr>
+
+<tr>
+<td align="center">citation</td>
+<td align="center">Citation to be used in publications using the data from the project should follow the following format: “ProjectName. [year-of-data-download], [Title], [Data access URL], accessed [date-of-access]”.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">infourl</td>
+<td align="center">URL to project information website or metadata record.</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center">ERDDAP</td>
+</tr>
+
+<tr>
+<td align="center">publications</td>
+<td align="center">Published or web-based references that describe the data or methods used to produce the data from the project. Multiple references should be separated with a semicolon. If available DOIs should be given.</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">license</td>
+<td align="center">Describe the project restrictions to data access and distribution.</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center">NACDD</td>
+</tr>
+
+<tr>
+<td align="center">distribution_statement</td>
+<td align="center">Statement describing data distribution policy (e.g. ‘You accept all risks and responsibility for losses, damages, costs and other consequences resulting directly or indirectly from using the data from this project’).</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">date_modified</td>
+<td align="center">Date on which the project data was last modified.</td>
+<td align="center">required</td>
+<td align="center">timestamp</td>
+<td align="center"></td>
+<td align="center">NACDD</td>
+</tr>
+
+<tr>
+<td align="center">location</td>
+<td align="center">Min and max longitude and latitude of the project data, transformed into a geometry (polygon).</td>
+<td align="center">required</td>
+<td align="center">geometry</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">timestamp_start</td>
+<td align="center">Start date and time (UTC) of the project data.</td>
+<td align="center">required</td>
+<td align="center">timestamp</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">timestamp_end</td>
+<td align="center">End date and time (UTC) of the project data.</td>
+<td align="center">required</td>
+<td align="center">timestamp</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<p><br><a name="data-center"></a></p>
+
+<h3 id="data-center:2fa0318a7a498a0748e7b453e0cf94f2"><em>Data center</em></h3>
+
+<p><strong>Provides name and attributes of each data center.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">Data center ID (unique).</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">manager_id</td>
+<td align="center">ID of manager of data center.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to users table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">title</td>
+<td align="center">Data center name</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Unique constraint</td>
+<td align="center">NACDD</td>
+</tr>
+
+<tr>
+<td align="center">summary</td>
+<td align="center">Description of data center including background, methods, and objectives.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center">NACDD</td>
+</tr>
+
+<tr>
+<td align="center">citation</td>
+<td align="center">Citation to be used in publications using the data from the data center should follow the following format: “DataCenterName. [year-of-data-download], [Title], [Data access URL], accessed [date-of-access]”.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">infourl</td>
+<td align="center">URL to data center information website or metadata record.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center">ERDDAP</td>
+</tr>
+
+<tr>
+<td align="center">license</td>
+<td align="center">Describe the data center restrictions to data access and distribution.</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center">NACDD</td>
+</tr>
+
+<tr>
+<td align="center">distribution_statement</td>
+<td align="center">Statement describing data distribution policy (e.g. ‘You accept all risks and responsibility for losses, damages, costs and other consequences resulting directly or indirectly from using the data from this project’).</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">date_modified</td>
+<td align="center">Date on which the data center data was last modified.</td>
+<td align="center">required</td>
+<td align="center">timestamp</td>
+<td align="center"></td>
+<td align="center">NACDD</td>
+</tr>
+</tbody>
+</table>
+
+<p><br><a name="users"></a></p>
+
+<h3 id="users:2fa0318a7a498a0748e7b453e0cf94f2"><em>Users</em></h3>
+
+<p><strong>Provides names and contact details of users.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">User ID.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">organisation_name</td>
+<td align="center">Name of organisation.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">name</td>
+<td align="center">Name of user</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Should be unique.</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">email_address</td>
+<td align="center">Email address of user</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Should be unique.</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">department</td>
+<td align="center">Department name within organisation</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">phone_number</td>
+<td align="center">Phone number of user, including country and area code.</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">postal_address</td>
+<td align="center">Postal address of organisation</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<p><br><a name="project-rol"></a></p>
+
+<h3 id="project-role:2fa0318a7a498a0748e7b453e0cf94f2"><em>Project role</em></h3>
+
+<p><strong>Provides mapping between the project and users table.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">Project role ID.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">user_id</td>
+<td align="center">User ID.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to users table.</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">project_id</td>
+<td align="center">Project ID.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to project table.</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">role_type</td>
+<td align="center">Role of user in project (<em>e.g.</em> Principal Investigator, Co-Investigator, Administrator, Student).</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Controlled vocabulary implemented via a check constraint</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<p><br></p>
+
+<h2 id="3-2-monitoring-tables:2fa0318a7a498a0748e7b453e0cf94f2">3.2 Monitoring tables</h2>
+
+<p><br><a name="activity-log"></a></p>
+
+<h3 id="activity-log:2fa0318a7a498a0748e7b453e0cf94f2"><em>Activity log</em></h3>
+
+<p><strong>Lists modifications made by users through the GUI to metadata tables.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">Activity log ID (unique).</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">user_id</td>
+<td align="center">ID of the person who made the modification.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to users table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">class_name</td>
+<td align="center">Name of the table that was modified.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">property_name</td>
+<td align="center">Name of the column that was modified.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">persisted_object_id</td>
+<td align="center">Row number where the modification was made.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">event_type</td>
+<td align="center">Type of modification made: i.e. delete, insert, or update</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Controlled vocabulary implemented via a check constraint</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">new_value</td>
+<td align="center">Value after modification was made</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">old_value</td>
+<td align="center">Value before modification was made</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<p><br><a name="uploaded-files"></a></p>
+
+<h3 id="uploaded-files:2fa0318a7a498a0748e7b453e0cf94f2"><em>Uploaded files</em></h3>
+
+<p><strong>Lists all data files uploaded by users.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">Data file ID (unique).</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">user_id</td>
+<td align="center">ID of the person who uploaded the data file.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to users table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">file_type</td>
+<td align="center">Type of data file uploaded, i.e. acoustic detections, GPS, Argos, or GLS locations.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Controlled vocabulary implemented via a check constraint</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">file_name</td>
+<td align="center">Name of data file uploaded.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">upload_datetime</td>
+<td align="center">Date and time (UTC) of file upload.</td>
+<td align="center">required</td>
+<td align="center">timestamp</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">status</td>
+<td align="center">Processed, processing, or error.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Controlled vocabulary implemented via a check constraint</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">err_msg</td>
+<td align="center">Potential error message from the data file checkers.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<p><br></p>
+
+<h2 id="3-3-data-tables:2fa0318a7a498a0748e7b453e0cf94f2">3.3 Data tables</h2>
+
+<p><br><a name="gps-locations"></a></p>
+
+<h3 id="gps-locations:2fa0318a7a498a0748e7b453e0cf94f2"><em>GPS locations</em></h3>
+
+<p><strong>Provides animal location data and diagnostic information obtained using the Fastloc GPS technology.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">GPS location ID (unique), self-generated by database during data import.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">file_id</td>
+<td align="center">Corresponding file ID</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to uploaded_file table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">device_name</td>
+<td align="center">The <code>device_name</code> value needs to match the content of the <code>device_name</code> field in the device table for data to be joined to metadata.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Foreign key to device table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">timestamp</td>
+<td align="center">Date and time (UTC) of the GPS location.</td>
+<td align="center">required</td>
+<td align="center">timestamp</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">decimalLatitude</td>
+<td align="center">In decimal format and degree North.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">-90 &lt; lat &lt; 90</td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">decimalLongitude</td>
+<td align="center">In decimal format and degree East.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">-180 &lt; lon &lt; 180</td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">nsats_detected</td>
+<td align="center">Diagnostic information for each timestamp, longitude, latitude combination. Need to confirm the usefulness and meaning of each of these fields.</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center">Need controlled vocabulary</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">nsats_transmitted</td>
+<td align="center">Diagnostic information for each timestamp, longitude, latitude combination. Need to confirm the usefulness and meaning of each of these fields.</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">pseudoranges</td>
+<td align="center">Diagnostic information for each timestamp, longitude, latitude combination. Need to confirm the usefulness and meaning of each of these fields.</td>
+<td align="center">optional</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">max_csn</td>
+<td align="center">Diagnostic information for each timestamp, longitude, latitude combination. Need to confirm the usefulness and meaning of each of these fields.</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">residual</td>
+<td align="center">Diagnostic information for each timestamp, longitude, latitude combination. Need to confirm the usefulness and meaning of each of these fields.</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">timeshift</td>
+<td align="center">Diagnostic information for each timestamp, longitude, latitude combination. Need to confirm the usefulness and meaning of each of these fields.</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">duplicate</td>
+<td align="center">Does this GPS location already exist in this table? A PostgreSQL function flags this field as TRUE if the combination of <code>device_name</code> and <code>timestamp</code> is found multiple times.</td>
+<td align="center">optional</td>
+<td align="center">boolean</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<p><br><a name="argos-locations"></a></p>
+
+<h3 id="argos-locations:2fa0318a7a498a0748e7b453e0cf94f2"><em>Argos locations</em></h3>
+
+<p><strong>Provides animal location data and diagnostic information obtained using the Argos technology.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">Argos location ID (unique), self-generated by database during data import.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">file_id</td>
+<td align="center">Corresponding file ID</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to uploaded_file table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">device_name</td>
+<td align="center">The <code>device_name</code> value needs to match the content of the <code>device_name</code> field in the device table for data to be joined to metadata.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Foreign key to device table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">timestamp</td>
+<td align="center">Date and time (UTC) of the Argos location.</td>
+<td align="center">required</td>
+<td align="center">timestamp</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">decimalLatitude</td>
+<td align="center">In decimal format and degree North.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">-90 &lt; lat &lt; 90</td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">decimalLongitude</td>
+<td align="center">In decimal format and degree East.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">-180 &lt; lon &lt; 180</td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">location_quality</td>
+<td align="center">Location Quality assigned by Argos (-1 = class A, -2 = class B, 9 = class Z).</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Need controlled vocabulary</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">alt_latitude</td>
+<td align="center">Alternative solution to position equations, in decimal format and degree North.</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">alt_longitude</td>
+<td align="center">Alternative solution to position equations, in decimal format and degree East.</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">n_mess</td>
+<td align="center">Number of uplinks received during the satellite pass.</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">n_mess_120</td>
+<td align="center">Number of uplinks received with signal strength &gt; -120 dB.</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">best_level</td>
+<td align="center">Signal strength of strongest uplink (dB).</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">pass_dur</td>
+<td align="center">Duration of satellite overpass (seconds).</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">freq</td>
+<td align="center">Measured frequency of SRDL signal at the satellite (Hz).</td>
+<td align="center">optional</td>
+<td align="center">numeric</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">duplicate</td>
+<td align="center">Does this Argos location already exist in this table? A PostgreSQL function flags this field as TRUE if the combination of <code>device_name</code> and <code>timestamp</code> is found multiple times.</td>
+<td align="center">optional</td>
+<td align="center">boolean</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<p><br><a name="gls-locations"></a></p>
+
+<h3 id="gls-locations:2fa0318a7a498a0748e7b453e0cf94f2"><em>GLS locations</em></h3>
+
+<p><strong>Provides animal location data obtained using light level sensor tags.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">GLS location ID (unique), self-generated by database during data import.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">file_id</td>
+<td align="center">Corresponding file ID</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to uploaded_file table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">device_name</td>
+<td align="center">The <code>device_name</code> value needs to match the content of the <code>device_name</code> field in the device table for data to be joined to metadata.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Foreign key to device table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">timestamp</td>
+<td align="center">Date and time (UTC) of the GLS location</td>
+<td align="center">required</td>
+<td align="center">timestamp</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">decimalLatitude</td>
+<td align="center">In decimal format and degree North.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">-90 &lt; lat &lt; 90</td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">decimalLongitude</td>
+<td align="center">In decimal format and degree East.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">-180 &lt; lon &lt; 180</td>
+<td align="center">Darwin Core</td>
+</tr>
+
+<tr>
+<td align="center">duplicate</td>
+<td align="center">Does this GLS location already exist in this table? A PostgreSQL function flags this field as TRUE if the combination of <code>device_name</code> and <code>timestamp</code> is found multiple times.</td>
+<td align="center">optional</td>
+<td align="center">boolean</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<p><br><a name="acoustic-detections"></a></p>
+
+<h3 id="acoustic-detections:2fa0318a7a498a0748e7b453e0cf94f2"><em>Acoustic detections</em></h3>
+
+<p><strong>Provides animal location data and sensor values obtained from acoustic receivers.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><em>Field name</em></th>
+<th align="center"><em>Description</em></th>
+<th align="center"><em>Required</em></th>
+<th align="center"><em>Data type</em></th>
+<th align="center"><em>Constraints</em></th>
+<th align="center"><em>Authority</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">Detection ID (unique), self-generated by database during data import.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Primary key</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">file_id</td>
+<td align="center">Corresponding file ID</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center">Foreign key to uploaded_file table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">receiver_name</td>
+<td align="center">Name of receiver on which transmitter was detected. The <code>receiver_name</code> value needs to match the content of the <code>device_name</code> field in the device table for data to be joined to metadata.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Foreign key to device table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">transmitter_id</td>
+<td align="center">The <code>transmitter_id</code> value needs to match the content of the <code>device_name</code> field in the device table for data to be joined to metadata.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center">Foreign key to device table</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">timestamp</td>
+<td align="center">Date and time (UTC) of the acoustic detection.</td>
+<td align="center">required</td>
+<td align="center">timestamp</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">sensor_value</td>
+<td align="center">Value recorded by the sensor tag.</td>
+<td align="center">required</td>
+<td align="center">numeric</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">sensor_unit</td>
+<td align="center">Corresponding unit for the sensor_value.</td>
+<td align="center">required</td>
+<td align="center">text</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="center">duplicate</td>
+<td align="center">Does this acoustic detection already exist in this table? A PostgreSQL function flags this field as TRUE if the combination of <code>transmitter_id</code>, <code>receiver_name</code>, and <code>timestamp</code> is found multiple times.</td>
+<td align="center">optional</td>
+<td align="center">boolean</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<p><br></p>
+
+<hr />
+
+<p><br></p>
+
+<h1 id="4-reference-information:2fa0318a7a498a0748e7b453e0cf94f2">4. Reference Information</h1>
+
+<p><br></p>
+
+<h2 id="4-1-contribution:2fa0318a7a498a0748e7b453e0cf94f2">4.1 Contribution</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Association</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Xavier Hoenner</td>
+<td align="left">Integrated Marine Observing System, University of Tasmania, Private Bag 110, Hobart, TAS 7001, Australia</td>
+</tr>
+
+<tr>
+<td align="left">Lenore Bajona,<br>Marta Mihoff, Jonathan Pye</td>
+<td align="left">Ocean Tracking Network (OTN) Biology, Department Dalhousie University, 1355 Oxford Street PO Box 15000 Halifax, NS, Canada, B3H 4R2</td>
+</tr>
+
+<tr>
+<td align="left">Hassan Moustahfid</td>
+<td align="left">NOAA. U.S. Integrated Ocean Observing System, Silver Spring, MD, USA</td>
+</tr>
+
+<tr>
+<td align="left">Rob Harcourt</td>
+<td align="left">Department of Biological Sciences, Faculty of Science and Engineering, Macquarie University, Sydney, NSW 2109, Australia</td>
+</tr>
+</tbody>
+</table>
+
+<p><br></p>
+
+<h2 id="4-2-citation-sources:2fa0318a7a498a0748e7b453e0cf94f2">4.2 Citation sources</h2>
+
+<ol>
+<li><p>Block BA, Jonsen ID, Jorgensen SJ, Winship AJ, Shaffer SA, Bograd SJ, Hazen EL, Foley DG, Breed GA, Harrison AL, Ganong JE, Swithenbank A, Castleton M, Dewar H, Mate BR, Shillinger GL, Schaefer KM, Benson SR, Weise MJ, Henry RW, Costa DP (2011) Tracking apex marine predator movements in a dynamic ocean. Nature 475:86-90</p></li>
+
+<li><p>Campbell HA, Beyer HL, Dennis TE, Dwyer RG, Forester JD, Fukuda Y, Lynch C, Hindell MA, Menke N, Morales JM, Richardson C, Rodgers E, Taylor G, Watts ME, Westcott DA (2015) Finding our way: On the sharing and reuse of animal telemetry data in Australasia. Science of The Total Environment 534:79-84</p></li>
+
+<li><p>Campbell HA, Urbano F, Davidson S, Dettki H, Cagnacci F (2016) A plea for standards in reporting data collected by animal-borne electronic devices. Animal Biotelemetry 4:1-4</p></li>
+
+<li><p>Dwyer RG, Brooking C, Brimblecombe W, Campbell HA, Hunter J, Watts M, Franklin CE (2015) An open Web-based system for the analysis and sharing of animal tracking data. Animal Biotelemetry 3:1-11</p></li>
+
+<li><p>Hussey NE, Kessel ST, Aarestrup K, Cooke SJ, Cowley PD, Fisk AT, Harcourt RG, Holland KN, Iverson SJ, Kocik JF, Mills Flemming JE, Whoriskey FG (2015) Aquatic animal telemetry: A panoramic window into
+the underwater world. Science 348</p></li>
+
+<li><p><a href="https://animaltracking.aodn.org.au/">IMOS Animal Tracking (2016) The Australian Animal Tracking National Database Web Application. Accessed 30 August 2016.</a></p></li>
+
+<li><p>Kays R, Crofoot MC, Jetz W, Wikelski M (2015) Terrestrial animal tracking as an eye on life and planet. Science 348</p></li>
+
+<li><p>Kranstauber B, Cameron A, Weinzerl R, Fountain T, Tilak S, Wikelski M, Kays R (2011) The Movebank data model for animal tracking. Environmental Modelling &amp; Software 26:834-835</p></li>
+
+<li><p><a href="http://ioostech.googlecode.com/files/AAT%20Metadata%20Convention%20v1.2.pdf">Payne J, Moustahfid H, Mayorga E, Branton R, Mihoff M, Bajona L (2013) A metadata convention for animal acoustic telemetry data.</a></p></li>
+</ol>
+
+<!--
+### Reference Disclaimer
+
+**This document should always be referenced as follows:**
+
+[Moustahfid H., M. Weise, S. Simmons, B. Block, K. Holland, J. Ault, J. Kocik, D. Costa, S. T. Lindley, B. Mate, S. Hayes, C. M. Holbrook, A. Seitz, M. Arendt, J. Payne, B. Mahmoudi, C. Alexander, P. Moore, J. Price, D. Wilson. 2014. Meeting our Nation’s needs for biological and environmental monitoring: Strategic plan and recommendations for a National Telemetry Network (ATN) through U.S. IOOS. U.S. Department of Commerce, NOAA Technical Memorandum NMFS, NOAA-TM-NMFS-SWFSC-534, 7 p.](https://github.com/abirger/animal-telemetry/blob/master/doc/national_atn_sp_draft_final1.pdf?raw=true)
+
+-->
+
+</div>
+
+
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+  </body>
+</html>
+
