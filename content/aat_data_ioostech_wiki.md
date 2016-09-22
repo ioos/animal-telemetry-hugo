@@ -8,8 +8,9 @@ title = "IOOS Animal Acoustic Telemetry (AAT) Data Project: Improving Access to 
 
 +++
 
-_As part of the [IOOS Animal Telemetry Network](http://www.ioos.noaa.gov/observing/animal_telemetry/welcome.html) efforts, in 2012-2013 IOOS supported a community needs assessment and data-access standards and technology development project for animal acoustic telemetry (AAT)  data. The AAT project was co-led by IOOS, NANOOS (the IOOS Regional Association for the Pacific Northwest), the Pacific Ocean Shelf Tracking Project (POST, which is no longer in operation), and the Ocean Tracking Network (OTN)._ 
+*As part of the [IOOS Animal Telemetry Network](http://www.ioos.noaa.gov/observing/animal_telemetry/welcome.html) efforts, in 2012-2013 IOOS supported a community needs assessment and data-access standards and technology development project for animal acoustic telemetry (AAT)  data. The AAT project was co-led by IOOS, NANOOS (the IOOS Regional Association for the Pacific Northwest), the Pacific Ocean Shelf Tracking Project (POST, which is no longer in operation), and the Ocean Tracking Network (OTN).* 
 <!--more-->
+
 &nbsp; <br>
 &nbsp; <br>
 
